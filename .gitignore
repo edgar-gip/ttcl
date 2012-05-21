@@ -1,3 +1,6 @@
+# Emacs backups
+*~
+
 # Compiled Object files
 *.slo
 *.lo
@@ -10,3 +13,25 @@
 *.lai
 *.la
 *.a
+
+# Libtool
+.deps
+.libs
+
+# Autoheader
+/src/config/config.hxx
+/src/config/config.hxx.in
+/src/config/stamp-h1
+
+# Automake
+Makefile
+Makefile.in
+
+# Autoconf
+/aclocal.m4
+/autom4te.cache
+/config.log
+/config.status
+/configure
+/libltdl
+/libtool
