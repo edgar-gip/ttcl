@@ -18,7 +18,7 @@
 
 ACLOCAL_AMFLAGS = -I libltdl/m4
 
-SUBDIRS = include src
+SUBDIRS = ext include src tests
 
 # Local Variables:
 # coding: utf-8

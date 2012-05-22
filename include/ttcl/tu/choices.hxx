@@ -27,6 +27,7 @@
 #include <boost/mpl/apply.hpp>
 #include <boost/mpl/at.hpp>
 #include <boost/mpl/if.hpp>
+#include <boost/mpl/insert.hpp>
 #include <boost/mpl/map.hpp>
 #include <boost/mpl/pair.hpp>
 #include <boost/mpl/void.hpp>
@@ -44,27 +45,27 @@ namespace ttcl {
 }
 
 /// Define a choice
-#define TTCL_TU_CHOICE(name, deflt_type) \
-  struct name { \
-    typedef deflt_type default_type; \
+#define TTCL_TU_CHOICE(name, deflt_type)        \
+  struct name {                                 \
+    typedef deflt_type default_type;            \
   };
 
 /// Add a choice
-#define TTCL_TU_ADD_CHOICE(choices, name, typ) \
+#define TTCL_TU_ADD_CHOICE(choices, name, typ)                          \
   typename boost::mpl::insert<choices, boost::mpl::pair<name, typ> >::type
 
 // Get a type
-#define TTCL_TU_GET_CHOICE(choices, name) \
-  typename boost::mpl::if_< \
+#define TTCL_TU_GET_CHOICE(choices, name)                        \
+  typename boost::mpl::if_<                                      \
     boost::is_same<typename boost::mpl::at<choices, name>::type, \
-                   boost::mpl::void_>, \
-    name::default_type, \
-    typename boost::mpl::at<choices, name>::type \
+                   boost::mpl::void_>,                           \
+    name::default_type,                                          \
+    typename boost::mpl::at<choices, name>::type                 \
   >::type
 
 // Apply a choice
-#define TTCL_TU_APPLY_CHOICE(choices, name, ...) \
-  typename boost::mpl::apply< \
+#define TTCL_TU_APPLY_CHOICE(choices, name, ...)                \
+  typename boost::mpl::apply<                                   \
     TTCL_TU_GET_CHOICE(choices, name), __VA_ARGS__>::type
 
 #endif

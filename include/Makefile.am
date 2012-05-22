@@ -21,7 +21,26 @@ nobase_include_HEADERS = \
 	ttcl/global.hxx ttcl/options.hxx ttcl/sys_exception.hxx \
 	ttcl/types.hxx \
 	\
+	ttcl/mf/coalesce.hxx ttcl/mf/has_field.hxx ttcl/mf/has_type.hxx \
+	ttcl/mf/maximum_common_type.hxx ttcl/mf/metaclass_of.hxx \
+	ttcl/mf/traits.hxx ttcl/mf/voidify.hxx
+	\
+	ttcl/ut/c_escape.hxx ttcl/ut/demangle.hxx ttcl/ut/indexed_compare.hxx \
+	ttcl/ut/math.hxx ttcl/ut/range.hxx ttcl/ut/reentrant_random.hxx \
+	ttcl/ut/singleton.hxx ttcl/ut/std_clock.hxx ttcl/ut/std_random.hxx \
+	\
 	ttcl/tu/choices.hxx ttcl/tu/tuning.hxx
+	\
+	ttcl_mulisp/run/interpreter.hxx ttcl_mulisp/run/lisp_interpreter.hxx \
+	\
+	ttcl_mulisp/sexp/sexp.hxx ttcl_mulisp/sexp/sexp_atom.hxx \
+	ttcl_mulisp/sexp/sexp_bool.hxx ttcl_mulisp/sexp/sexp_const_visitor.hxx \
+	ttcl_mulisp/sexp/sexp_integer.hxx ttcl_mulisp/sexp/sexp_native.hxx \
+	ttcl_mulisp/sexp/sexp_null.hxx ttcl_mulisp/sexp/sexp_number.hxx \
+	ttcl_mulisp/sexp/sexp_pair.hxx ttcl_mulisp/sexp/sexp_parser.hxx \
+	ttcl_mulisp/sexp/sexp_procedure.hxx ttcl_mulisp/sexp/sexp_real.hxx \
+	ttcl_mulisp/sexp/sexp_string.hxx ttcl_mulisp/sexp/sexp_symbol.hxx \
+	ttcl_mulisp/sexp/sexp_visitor.hxx
 
 # Local Variables:
 # coding: utf-8

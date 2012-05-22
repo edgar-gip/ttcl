@@ -16,21 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-include ../../Makefile.am.inc
-
-SUBDIRS = ut tu
-
-INCLUDES = -I../../include
-
-noinst_LTLIBRARIES = libttcl_core.la
-lib_LTLIBRARIES = libttcl.la
-
-libttcl_core_la_SOURCES = \
-	boost_assert.cxx exception.cxx sys_exception.cxx
-
-libttcl_la_SOURCES =
-libttcl_la_LIBADD  = \
-	libttcl_core.la ut/libttcl_ut.la tu/libttcl_tu.la
+SUBDIRS = doc headers source
 
 # Local Variables:
 # coding: utf-8

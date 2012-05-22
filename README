@@ -1,0 +1,14 @@
+This is TTCL, The Template Clustering Library.
+
+TTCL is a C++ library.
+
+
+This package includes a copy of the libtap++ library by Leon
+Timmermans, available at
+
+    https://github.com/Leont/libperl--
+
+
+Local Variables:
+coding: utf-8
+End:

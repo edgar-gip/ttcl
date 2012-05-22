@@ -16,21 +16,20 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-include ../../Makefile.am.inc
+include ../../../Makefile.am.inc
 
-SUBDIRS = ut tu
+INCLUDES = -I../../../include -I../../ttcl
 
-INCLUDES = -I../../include
+noinst_LTLIBRARIES = libttcl_mulisp_run.la
 
-noinst_LTLIBRARIES = libttcl_core.la
-lib_LTLIBRARIES = libttcl.la
-
-libttcl_core_la_SOURCES = \
-	boost_assert.cxx exception.cxx sys_exception.cxx
-
-libttcl_la_SOURCES =
-libttcl_la_LIBADD  = \
-	libttcl_core.la ut/libttcl_ut.la tu/libttcl_tu.la
+libttcl_mulisp_run_la_SOURCES = \
+	bool_procedures.cxx control_procedures.cxx display_procedures.cxx \
+	eval_procedures.cxx gpl_procedures.cxx interpreter.cxx \
+	lisp_interpreter.cxx number_arithmetic_procedures.cxx \
+	number_compare_procedures.cxx pair_procedures.cxx \
+	quote_procedures.cxx set_procedures.cxx string_compare_procedures.cxx \
+	string_operation_procedures.cxx
+libttcl_mulisp_run_la_LIBADD = @READLINE_LIBS@
 
 # Local Variables:
 # coding: utf-8

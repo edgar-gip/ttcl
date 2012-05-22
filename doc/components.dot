@@ -1,0 +1,9 @@
+digraph ttcl {
+    core;
+
+    tu -> core;
+
+    mf -> core;
+
+
+}

@@ -16,21 +16,17 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-include ../../Makefile.am.inc
+include ../../../Makefile.am.inc
 
-SUBDIRS = ut tu
+INCLUDES = -I../../../include
 
-INCLUDES = -I../../include
+noinst_LTLIBRARIES = libttcl_mulisp_sexp.la
 
-noinst_LTLIBRARIES = libttcl_core.la
-lib_LTLIBRARIES = libttcl.la
-
-libttcl_core_la_SOURCES = \
-	boost_assert.cxx exception.cxx sys_exception.cxx
-
-libttcl_la_SOURCES =
-libttcl_la_LIBADD  = \
-	libttcl_core.la ut/libttcl_ut.la tu/libttcl_tu.la
+libttcl_mulisp_sexp_la_SOURCES = \
+	sexp.cxx sexp_atom.cxx sexp_bool.cxx sexp_const_visitor.cxx \
+	sexp_integer.cxx sexp_native.cxx sexp_null.cxx sexp_number.cxx \
+	sexp_pair.cxx sexp_parser.cxx sexp_procedure.cxx sexp_real.cxx \
+	sexp_string.cxx sexp_symbol.cxx sexp_visitor.cxx
 
 # Local Variables:
 # coding: utf-8

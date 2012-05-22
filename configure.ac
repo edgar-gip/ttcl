@@ -19,15 +19,16 @@
 # Process this file with autoconf to produce a configure script.
 
 # Initialize
-AC_INIT([ttcl], [0.3], [edgar.gip@gmail.com])
+AC_INIT([TTCL], [0.3], [edgar.gip@gmail.com])
 AC_CONFIG_AUX_DIR([libltdl/config])
-AC_CONFIG_HEADERS([src/config/config.hxx])
+AC_CONFIG_HEADERS([src/ttcl/config.hxx])
 AC_CONFIG_MACRO_DIR([libltdl/m4])
 AC_CONFIG_SRCDIR([src/ttcl/exception.cxx])
 AC_CONFIG_SUBDIRS([libtdl])
-AM_INIT_AUTOMAKE([foreign])
+AM_INIT_AUTOMAKE
 
 # Checks for programs.
+AC_PROG_AWK
 AC_PROG_CC
 AC_PROG_CXX
 
@@ -80,9 +81,19 @@ AC_CHECK_FUNCS([isascii isxdigit])
 # Output
 AC_CONFIG_FILES([Makefile
                  include/Makefile
+                 ext/Makefile
+                 ext/tap++/Makefile
+                 ext/tap++/doc/Makefile
+                 ext/tap++/headers/Makefile
+                 ext/tap++/source/Makefile
                  src/Makefile
                  src/ttcl/Makefile
-                 src/ttcl/tu/Makefile])
+                 src/ttcl/ut/Makefile
+                 src/ttcl/tu/Makefile
+                 src/ttcl_mulisp/Makefile
+                 src/ttcl_mulisp/run/Makefile
+                 src/ttcl_mulisp/sexp/Makefile
+                 tests/Makefile])
 AC_OUTPUT
 
 # Local Variables:

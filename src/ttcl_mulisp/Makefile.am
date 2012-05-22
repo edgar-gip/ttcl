@@ -18,19 +18,21 @@
 
 include ../../Makefile.am.inc
 
-SUBDIRS = ut tu
+SUBDIRS = sexp run
 
 INCLUDES = -I../../include
 
-noinst_LTLIBRARIES = libttcl_core.la
-lib_LTLIBRARIES = libttcl.la
+bin_PROGRAMS = ttcl-mulisp
 
-libttcl_core_la_SOURCES = \
-	boost_assert.cxx exception.cxx sys_exception.cxx
+lib_LTLIBRARIES = libttcl_mulisp.la
 
-libttcl_la_SOURCES =
-libttcl_la_LIBADD  = \
-	libttcl_core.la ut/libttcl_ut.la tu/libttcl_tu.la
+libttcl_mulisp_la_SOURCES =
+libttcl_mulisp_la_LIBADD  = \
+	sexp/libttcl_mulisp_sexp.la run/libttcl_mulisp_run.la \
+	../ttcl/libttcl.la
+
+ttcl_mulisp_SOURCES = main.cxx
+ttcl_mulisp_LDADD = libttcl_mulisp.la ../ttcl/libttcl.la
 
 # Local Variables:
 # coding: utf-8
