@@ -70,6 +70,33 @@
 # define TTCL_DELETE
 #endif
 
+/// Default constructor
+#ifdef TTCL_CXX0X_DEFAULTS
+# define TTCL_DEFAULT_CONSTRUCTOR(_class)       \
+  _class() = default
+#else
+# define TTCL_DEFAULT_CONSTRUCTOR(_class)       \
+  _class() {}
+#endif
+
+/// Default non-public constructor
+#ifdef TTCL_CXX0X_NONPUBLIC_DEFAULTS
+# define TTCL_DEFAULT_NONPUBLIC_CONSTRUCTOR(_class)     \
+  _class() = default
+#else
+# define TTCL_DEFAULT_NONPUBLIC_CONSTRUCTOR(_class)     \
+  _class() {}
+#endif
+
+/// Deleted constructor
+#ifdef TTCL_CXX0X_DEFAULTS
+# define TTCL_DELETED_CONSTRUCTOR(_class)       \
+  _class() = delete
+#else
+# define TTCL_DELETED_CONSTRUCTOR(_class)       \
+  _class()
+#endif
+
 #endif
 
 // Local Variables:

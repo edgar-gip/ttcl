@@ -60,7 +60,7 @@ namespace ttcl_mulisp {
 
     public:
       /// Constructor
-      interpreter() TTCL_DEFAULT;
+      TTCL_DEFAULT_CONSTRUCTOR(interpreter);
 
     private:
       /// Copy constructor

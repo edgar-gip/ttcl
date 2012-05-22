@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # TTCL: The Template Clustering Library
 # Copyright (C) 2012  Edgar Gonzàlez i Pellicer
 #
@@ -18,11 +16,25 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-for f in $(grep -lR $'\t' . | grep '[ch]xx')
-do
-    echo "$f"
-    expand $f > $f.tmp && mv $f.tmp $f
-done
+SUBDIRS = manual
+
+include Doxygen.am
+
+# if DX_COND_man
+
+# # You'd probably want to post-process man pages and installed the patched
+# # versions.
+# dist_man1_MANS = @DX_DOCDIR@/man/man1/doxample.c.1
+
+# $(dist_man1_MANS): doxygen-doc
+
+# endif
+
+MOSTLYCLEANFILES = $(DX_CLEANFILES)
+
+EXTRA_DIST = $(DX_CONFIG)
+
+all: doxygen-doc
 
 # Local Variables:
 # coding: utf-8

@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # TTCL: The Template Clustering Library
 # Copyright (C) 2012  Edgar Gonzàlez i Pellicer
 #
@@ -18,11 +16,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-for f in $(grep -lR $'\t' . | grep '[ch]xx')
-do
-    echo "$f"
-    expand $f > $f.tmp && mv $f.tmp $f
-done
+include ../../../Makefile.am.inc
+
+INCLUDES = -I../../../include
+
+noinst_LTLIBRARIES = libttcl_wr.la
+
+libttcl_wr_la_SOURCES = \
+	shared_referee.cxx
 
 # Local Variables:
 # coding: utf-8

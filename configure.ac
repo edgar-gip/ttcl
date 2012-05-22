@@ -19,7 +19,7 @@
 # Process this file with autoconf to produce a configure script.
 
 # Initialize
-AC_INIT([TTCL], [0.3], [edgar.gip@gmail.com])
+AC_INIT([TTCL], [0.4], [edgar.gip@gmail.com])
 AC_CONFIG_AUX_DIR([libltdl/config])
 AC_CONFIG_HEADERS([src/ttcl/config.hxx])
 AC_CONFIG_MACRO_DIR([libltdl/m4])
@@ -78,18 +78,33 @@ AC_CHECK_HEADERS([memory.h string.h])
 AC_CHECK_FUNCS([isascii isxdigit])
 
 
+# Doxygen
+DX_HTML_FEATURE(ON)
+DX_CHM_FEATURE(OFF)
+DX_CHI_FEATURE(OFF)
+DX_MAN_FEATURE(OFF)
+DX_RTF_FEATURE(OFF)
+DX_XML_FEATURE(OFF)
+DX_PDF_FEATURE(OFF)
+DX_PS_FEATURE(OFF)
+DX_INIT_DOXYGEN([TTCL],[Doxyfile],[api])
+
+
 # Output
 AC_CONFIG_FILES([Makefile
-                 include/Makefile
+                 doc/Makefile
+                 doc/manual/Makefile
                  ext/Makefile
                  ext/tap++/Makefile
                  ext/tap++/doc/Makefile
                  ext/tap++/headers/Makefile
                  ext/tap++/source/Makefile
+                 include/Makefile
                  src/Makefile
                  src/ttcl/Makefile
                  src/ttcl/ut/Makefile
                  src/ttcl/tu/Makefile
+                 src/ttcl/wr/Makefile
                  src/ttcl_mulisp/Makefile
                  src/ttcl_mulisp/run/Makefile
                  src/ttcl_mulisp/sexp/Makefile
