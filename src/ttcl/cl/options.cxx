@@ -16,37 +16,15 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#include <boost/mpl/void.hpp>
-#include <boost/type_traits/is_same.hpp>
+#include <ttcl/cl/options.hxx>
+#include <ttcl/tu/tuning.hxx>
 
-#include <tap++/tap++.h>
+using namespace std;
+using namespace ttcl;
+using namespace ttcl::cl;
 
-#include <ttcl/co/full_symmetric_matrix.hxx>
-#include <ttcl/co/hollow_symmetric_matrix.hxx>
-#include <ttcl/co/wr/matrix_wrap.hxx>
-// Main
-int main() {
-  TAP::plan(9);
-
-  ttcl::co::wr::matrix_wrap m_w;
-
-  m_w = new ttcl::co::full_symmetric_matrix<int>(3, 3);
-  TAP::is(m_w.size(), 3);
-  TAP::is(m_w.rows(), 3);
-  TAP::is(m_w.columns(), 3);
-
-  m_w = new ttcl::co::hollow_symmetric_matrix<int>(3, 3);
-  TAP::is(m_w.size(), 3);
-  TAP::is(m_w.rows(), 3);
-  TAP::is(m_w.columns(), 3);
-
-  m_w = new ttcl::co::hollow_symmetric_matrix<int>(3, 3);
-  TAP::is(m_w.size(), 3);
-  TAP::is(m_w.rows(), 3);
-  TAP::is(m_w.columns(), 3);
-
-  return TAP::exit_status();
-}
+/// Inner softness
+TTCL_TU_OPTION_STATIC(inner_softness);
 
 // Local Variables:
 // coding: utf-8

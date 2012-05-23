@@ -273,7 +273,7 @@ function report(result, details)
   if (length(details))
     msg = msg " " details
   # Output on console might be colorized.
-  print decorate_result(result) msg
+  # print decorate_result(result) msg
   # Log the result in the log file too, to help debugging (this is
   # especially true when said result is a TAP error or "Bail out!").
   print result msg | "cat >&3";

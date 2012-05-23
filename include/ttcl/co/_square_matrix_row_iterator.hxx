@@ -25,7 +25,7 @@
 
 /** @file
     Containers - Square matrix row iterator
-    @author Edgar Gonzalez i Pellicer
+    @author Edgar Gonzàlez i Pellicer
 */
 
 #include <cstddef>

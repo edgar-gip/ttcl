@@ -21,7 +21,7 @@
 
 /** @file
     Wrappers - Base interface wrapper
-    @author Edgar Gonzalez i Pellicer
+    @author Edgar Gonzàlez i Pellicer
 */
 
 #include <ttcl/wr/shared_ptr.hxx>
@@ -48,6 +48,12 @@ namespace ttcl {
       /// Constructor
       interface_wrap(Interface* _ptr) :
         ptr_(_ptr) {
+      }
+
+      /// Type
+      const std::type_info&
+      type() const {
+        return ptr_->type();
       }
     };
   }

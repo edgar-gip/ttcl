@@ -21,7 +21,7 @@
 
 /** @file
     Utilities - C++ identifier mangling
-    @author Edgar Gonzalez i Pellicer
+    @author Edgar Gonzàlez i Pellicer
 */
 
 #include <string>

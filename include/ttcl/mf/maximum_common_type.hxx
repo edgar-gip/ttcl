@@ -21,7 +21,7 @@
 
 /** @file
     Meta-functions - Maximum common type
-    @author Edgar Gonzalez i Pellicer
+    @author Edgar Gonzàlez i Pellicer
 */
 
 #include <boost/mpl/and.hpp>

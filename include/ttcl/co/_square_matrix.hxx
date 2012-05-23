@@ -26,7 +26,7 @@
 
 /** @file
     Containers - Square matrix adapter
-    @author Edgar Gonzalez i Pellicer
+    @author Edgar Gonzàlez i Pellicer
 */
 
 #include <iterator>

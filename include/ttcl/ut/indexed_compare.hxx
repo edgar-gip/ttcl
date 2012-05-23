@@ -21,7 +21,7 @@
 
 /** @file
     Utilities - Indexed compare
-    @author Edgar Gonzalez i Pellicer
+    @author Edgar Gonzàlez i Pellicer
 */
 
 #include <functional>

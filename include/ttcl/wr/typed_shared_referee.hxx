@@ -21,7 +21,7 @@
 
 /** @file
     Wrappers - Typed shared referee mixin
-    @author Edgar Gonzalez i Pellicer
+    @author Edgar Gonzàlez i Pellicer
 */
 
 #include <ttcl/wr/shared_referee.hxx>

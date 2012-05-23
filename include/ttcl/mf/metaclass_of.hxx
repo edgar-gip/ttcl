@@ -21,7 +21,7 @@
 
 /** @file
     Meta-functions - Metaclass of
-    @author Edgar Gonzalez i Pellicer
+    @author Edgar Gonzàlez i Pellicer
 */
 
 #include <boost/mpl/placeholders.hpp>

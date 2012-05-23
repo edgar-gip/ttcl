@@ -1,2 +1,4 @@
-/test_*
-!/test_*.cxx
+*.log
+*.trs
+test_*
+!test_*.cxx

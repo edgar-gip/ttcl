@@ -21,7 +21,7 @@
 
 /** @file
     Containers - Full Symmetric matrix
-    @author Edgar Gonzalez i Pellicer
+    @author Edgar Gonzàlez i Pellicer
 */
 
 #include <vector>

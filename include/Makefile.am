@@ -21,6 +21,17 @@ nobase_include_HEADERS = \
 	ttcl/global.hxx ttcl/options.hxx ttcl/sys_exception.hxx \
 	ttcl/types.hxx \
 	\
+	ttcl/co/_boost_matrix.hxx ttcl/co/_square_matrix.hxx \
+	ttcl/co/_square_matrix_iterator.hxx \
+	ttcl/co/_square_matrix_reverse_iterator.hxx \
+	ttcl/co/_square_matrix_row_iterator.hxx \
+	ttcl/co/_square_matrix_row_ref.hxx ttcl/co/cube.hxx \
+	ttcl/co/default_pair.hxx ttcl/co/fake_pair.hxx \
+	ttcl/co/fortran_matrix.hxx ttcl/co/full_symmetric_matrix.hxx \
+	ttcl/co/hollow_symmetric_matrix.hxx ttcl/co/matrix.hxx \
+	\
+	ttcl/dt/wr/data_w.hxx ttcl/dt/wr/matrix_w.hxx
+	\
 	ttcl/mf/coalesce.hxx ttcl/mf/has_field.hxx ttcl/mf/has_type.hxx \
 	ttcl/mf/maximum_common_type.hxx ttcl/mf/metaclass_of.hxx \
 	ttcl/mf/traits.hxx ttcl/mf/voidify.hxx

@@ -21,7 +21,7 @@
 
 /** @file
     Utilities - Range iterator and generator
-    @author Edgar Gonzalez i Pellicer
+    @author Edgar Gonzàlez i Pellicer
 */
 
 #include <iterator>

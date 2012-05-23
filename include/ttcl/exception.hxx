@@ -21,7 +21,7 @@
 
 /** @file
     Exceptions
-    @author Edgar Gonzalez i Pellicer
+    @author Edgar Gonzàlez i Pellicer
 */
 
 #include <cstdarg>

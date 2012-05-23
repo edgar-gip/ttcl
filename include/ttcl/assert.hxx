@@ -21,7 +21,7 @@
 
 /** @file
     Assertions
-    @author Edgar Gonzalez i Pellicer
+    @author Edgar Gonzàlez i Pellicer
 */
 
 // Conditional includes

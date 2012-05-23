@@ -21,7 +21,7 @@
 
 /** @file
     Metafunctions - Voidify
-    @author Edgar Gonzalez i Pellicer
+    @author Edgar Gonzàlez i Pellicer
 */
 
 /// TTCL Namespace

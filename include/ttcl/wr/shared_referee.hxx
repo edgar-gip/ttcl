@@ -21,7 +21,7 @@
 
 /** @file
     Wrappers - Shared referee base class
-    @author Edgar Gonzalez i Pellicer
+    @author Edgar Gonzàlez i Pellicer
 */
 
 #include <typeinfo>

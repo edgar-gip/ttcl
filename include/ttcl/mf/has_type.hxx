@@ -21,7 +21,7 @@
 
 /** @file
     Metafunctions - Type checking trait definition
-    @author Edgar Gonzalez i Pellicer
+    @author Edgar Gonzàlez i Pellicer
 */
 
 #include <boost/type_traits/integral_constant.hpp>

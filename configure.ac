@@ -25,7 +25,7 @@ AC_CONFIG_HEADERS([src/ttcl/config.hxx])
 AC_CONFIG_MACRO_DIR([libltdl/m4])
 AC_CONFIG_SRCDIR([src/ttcl/exception.cxx])
 AC_CONFIG_SUBDIRS([libtdl])
-AM_INIT_AUTOMAKE
+AM_INIT_AUTOMAKE([parallel-tests])
 
 # Checks for programs.
 AC_PROG_AWK
@@ -102,13 +102,23 @@ AC_CONFIG_FILES([Makefile
                  include/Makefile
                  src/Makefile
                  src/ttcl/Makefile
+                 src/ttcl/cl/Makefile
                  src/ttcl/ut/Makefile
                  src/ttcl/tu/Makefile
                  src/ttcl/wr/Makefile
                  src/ttcl_mulisp/Makefile
                  src/ttcl_mulisp/run/Makefile
                  src/ttcl_mulisp/sexp/Makefile
-                 tests/Makefile])
+                 tests/Makefile
+                 tests/unit/Makefile
+                 tests/unit/ttcl/Makefile
+                 tests/unit/ttcl/cl/Makefile
+                 tests/unit/ttcl/co/Makefile
+                 tests/unit/ttcl/dt/Makefile
+                 tests/unit/ttcl/dt/wr/Makefile
+                 tests/unit/ttcl/mf/Makefile
+                 tests/unit/ttcl/tu/Makefile
+                 tests/unit/ttcl/wr/Makefile])
 AC_OUTPUT
 
 # Local Variables:
