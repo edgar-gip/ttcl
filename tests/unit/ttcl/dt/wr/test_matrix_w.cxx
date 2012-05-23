@@ -26,8 +26,10 @@
 #include <ttcl/co/hollow_symmetric_matrix.hxx>
 #include <ttcl/co/matrix.hxx>
 #include <ttcl/dt/wr/matrix_w.hxx>
+
 // Main
-int main() {
+int
+ main() {
   TAP::plan(44);
 
   ttcl::dt::wr::matrix_w m_w;

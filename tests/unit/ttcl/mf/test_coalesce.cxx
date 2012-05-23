@@ -24,7 +24,8 @@
 #include <ttcl/mf/coalesce.hxx>
 
 // Main
-int main() {
+int
+main() {
   TAP::plan(12);
 
   TAP::ok

@@ -16,35 +16,35 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef TTCL_CXX0X_HXX
-#define TTCL_CXX0X_HXX
+#ifndef TTCL_CXX11_HXX
+#define TTCL_CXX11_HXX
 
 /** @file
-    C++0x Support
+    C++11 Support
     @author Edgar Gonzàlez i Pellicer
 */
 
-/// C++ 0x default functions
-#if __GNUC__ == 4 && __GNUC_MINOR__ >= 4 && defined(__GXX_EXPERIMENTAL_CXX0X__)
-# define TTCL_CXX0X_DEFAULTS
-#endif
+#include <ttcl/_c++11.hxx>
 
-/// C++ 0x move default functions
-#if 0 && defined(__GXX_EXPERIMENTAL_CXX0X__)
-# define TTCL_CXX0X_MOVE_DEFAULTS
-#endif
+// Define if g++ supports C++11 default functions.
+/* #undef TTCL_CXX11_DEFAULT_FUNCTIONS */
 
-/// C++ 0x non-public default functions
-#if __GNUC__ == 4 && __GNUC_MINOR__ >= 6 && defined(__GXX_EXPERIMENTAL_CXX0X__)
-# define TTCL_CXX0X_NONPUBLIC_DEFAULTS
-#endif
+// Define if g++ supports C++11 deleted functions.
+/* #undef TTCL_CXX11_DELETED_FUNCTIONS */
 
-/// C++ 0x rvalues
-#if __GNUC__ == 4 && __GNUC_MINOR__ >= 3 && defined(__GXX_EXPERIMENTAL_CXX0X__)
-# define TTCL_CXX0X_RVALUES
-#endif
+// Define if g++ supports C++11 non-public default functions.
+/* #undef TTCL_CXX11_NONPUBLIC_DEFAULT_FUNCTIONS */
 
-/// C++ 0x unique pointers
+// Define if g++ supports C++11 rvalues.
+/* #undef TTCL_CXX11_RVALUES */
+
+// Define if g++ supports C++11 rvalue default functions.
+/* #undef TTCL_CXX11_RVALUE_DEFAULT_FUNCTIONS */
+
+// Define if g++ supports C++11 template aliases.
+/* #undef TTCL_CXX11_TEMPLATE_ALIASES */
+
+/// C++0x unique pointers
 #if __GNUC__ == 4 && __GNUC_MINOR__ >= 5 && defined(__GXX_EXPERIMENTAL_CXX0X__)
 # define TTCL_CXX0X_UNIQUE_PTR
 #endif
@@ -57,21 +57,21 @@
 #endif
 
 /// Default
-#ifdef TTCL_CXX0X_DEFAULTS
+#ifdef TTCL_CXX11_DEFAULT_FUNCTIONS
 # define TTCL_DEFAULT = default
 #else
 # define TTCL_DEFAULT
 #endif
 
 /// Delete
-#ifdef TTCL_CXX0X_DEFAULTS
+#ifdef TTCL_CXX11_DELETED_FUNCTIONS
 # define TTCL_DELETE = delete
 #else
 # define TTCL_DELETE
 #endif
 
 /// Default constructor
-#ifdef TTCL_CXX0X_DEFAULTS
+#ifdef TTCL_CXX11_DEFAULT_FUNCTIONS
 # define TTCL_DEFAULT_CONSTRUCTOR(_class)       \
   _class() = default
 #else
@@ -80,7 +80,7 @@
 #endif
 
 /// Default non-public constructor
-#ifdef TTCL_CXX0X_NONPUBLIC_DEFAULTS
+#ifdef TTCL_CXX11_NONPUBLIC_DEFAULT_FUNCTIONS
 # define TTCL_DEFAULT_NONPUBLIC_CONSTRUCTOR(_class)     \
   _class() = default
 #else
@@ -89,7 +89,7 @@
 #endif
 
 /// Deleted constructor
-#ifdef TTCL_CXX0X_DEFAULTS
+#ifdef TTCL_CXX11_DELETED_FUNCTIONS
 # define TTCL_DELETED_CONSTRUCTOR(_class)       \
   _class() = delete
 #else

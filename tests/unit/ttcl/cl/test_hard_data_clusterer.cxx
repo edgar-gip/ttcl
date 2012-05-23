@@ -53,7 +53,8 @@ const uint n_samples = 100;
 const uint n_clusters = 5;
 
 // Test
-int main() {
+int
+main() {
   // Plan
   TAP::plan(2 * (2 + n_samples)
             + 2 * (2 + n_samples * n_clusters));
@@ -102,7 +103,7 @@ int main() {
             TAP::is(sc[i][c], 1.0);
           }
           else {
-            TAP::is(1.0 - sc[i][c], 1.0);
+            TAP::is(sc[i][c], 0.0);
           }
         }
       }
@@ -124,7 +125,7 @@ int main() {
             TAP::is(sc[i][c], 1.0);
           }
           else {
-            TAP::is(1.0 - sc[i][c], 1.0);
+            TAP::is(sc[i][c], 0.0);
           }
         }
       }

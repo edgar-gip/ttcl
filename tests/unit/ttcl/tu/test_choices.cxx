@@ -71,7 +71,8 @@ struct test {
 };
 
 // Main
-int main() {
+int
+main() {
   TAP::plan(32);
 
   test<> t_acac;

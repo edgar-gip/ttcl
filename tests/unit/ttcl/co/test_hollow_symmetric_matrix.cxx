@@ -31,7 +31,8 @@ const int hollow_data[nelems][nelems] =
     { 2, 3, 0 } };
 
 // Test
-int main() {
+int
+main() {
   // Matrix
   typedef ttcl::co::hollow_symmetric_matrix<int> matrix_type;
 

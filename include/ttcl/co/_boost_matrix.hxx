@@ -34,7 +34,6 @@
 
 #include <boost/multi_array.hpp>
 
-#include <ttcl/c++0x.hxx>
 #include <ttcl/global.hxx>
 
 /// TTCL Namespace

@@ -23,7 +23,8 @@
 #include <ttcl/mf/metaclass_of.hxx>
 
 // Main
-int main() {
+int
+main() {
   TAP::plan(1);
 
   TAP::ok

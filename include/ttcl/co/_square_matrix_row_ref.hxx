@@ -34,7 +34,6 @@
 
 #include <boost/utility.hpp>
 
-#include <ttcl/c++0x.hxx>
 #include <ttcl/global.hxx>
 #include <ttcl/co/_square_matrix_row_iterator.hxx>
 
@@ -61,10 +60,10 @@ namespace ttcl {
       TTCL_IMPORT_TYPE(matrix_type, size_type);
 
       /// Reference type
-      typedef value_type& reference;
+      TTCL_IMPORT_R_TYPE(matrix_type, element_reference, reference);
 
       /// Const reference type
-      typedef const value_type& const_reference;
+      TTCL_IMPORT_R_TYPE(matrix_type, const_element_reference, const_reference);
 
       /// Pointer
       typedef value_type* pointer;

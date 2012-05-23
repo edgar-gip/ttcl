@@ -26,7 +26,7 @@
 
 #include <cstdlib>
 
-#include <ttcl/c++0x.hxx>
+#include <ttcl/c++11.hxx>
 
 /// TTCL Namespace
 namespace ttcl {

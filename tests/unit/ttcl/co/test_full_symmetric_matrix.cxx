@@ -31,7 +31,8 @@ const int full_data[nelems][nelems] =
     { 4, 5, 6 } };
 
 // Test
-int main() {
+int
+main() {
   // Matrix
   typedef ttcl::co::full_symmetric_matrix<int> matrix_type;
 

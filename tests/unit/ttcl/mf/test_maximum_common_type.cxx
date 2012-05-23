@@ -23,7 +23,8 @@
 #include <ttcl/mf/maximum_common_type.hxx>
 
 // Main
-int main() {
+int
+main() {
   TAP::plan(11);
 
   TAP::ok

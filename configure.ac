@@ -22,7 +22,7 @@
 AC_INIT([TTCL], [0.4], [edgar.gip@gmail.com])
 AC_CONFIG_AUX_DIR([libltdl/config])
 AC_CONFIG_HEADERS([src/ttcl/config.hxx])
-AC_CONFIG_MACRO_DIR([libltdl/m4])
+AC_CONFIG_MACRO_DIR([libltdl/m4 m4])
 AC_CONFIG_SRCDIR([src/ttcl/exception.cxx])
 AC_CONFIG_SUBDIRS([libtdl])
 AM_INIT_AUTOMAKE([parallel-tests])
@@ -78,6 +78,16 @@ AC_CHECK_HEADERS([memory.h string.h])
 AC_CHECK_FUNCS([isascii isxdigit])
 
 
+# C++
+AC_LANG(C++)
+AX_CXX_COMPILE_STDCXX_11(ext)
+AX_CXX_STDCXX_11_DEFAULT_FUNCTIONS
+AX_CXX_STDCXX_11_DELETED_FUNCTIONS
+AX_CXX_STDCXX_11_NON_PUBLIC_DEFAULT_FUNCTIONS
+AX_CXX_STDCXX_11_RVALUES
+AX_CXX_STDCXX_11_RVALUE_DEFAULT_FUNCTIONS
+AX_CXX_STDCXX_11_TEMPLATE_ALIASES
+
 # Doxygen
 DX_HTML_FEATURE(ON)
 DX_CHM_FEATURE(OFF)
@@ -116,9 +126,66 @@ AC_CONFIG_FILES([Makefile
                  tests/unit/ttcl/co/Makefile
                  tests/unit/ttcl/dt/Makefile
                  tests/unit/ttcl/dt/wr/Makefile
+                 tests/unit/ttcl/fn/Makefile
                  tests/unit/ttcl/mf/Makefile
                  tests/unit/ttcl/tu/Makefile
                  tests/unit/ttcl/wr/Makefile])
+
+AC_CONFIG_COMMANDS([_c++11.hxx],[dnl
+  outfile=$srcdir/include/ttcl/_c++11.hxx
+  tmpfile=$outfile.tmp
+
+  cat > $tmpfile << _EOF_
+#ifndef _TTCL__CXX11_HXX
+#define _TTCL__CXX11_HXX
+
+_EOF_
+
+  if test x"$default_functions" = xyes; then
+    echo '#define TTCL_CXX11_DEFAULT_FUNCTIONS' >> $tmpfile
+  fi
+
+  if test x"$deleted_functions" = xyes; then
+    echo '#define TTCL_CXX11_DELETED_FUNCTIONS' >> $tmpfile
+  fi
+
+  if test x"$nonpublic_default_functions" = xyes; then
+    echo '#define TTCL_CXX11_NONPUBLIC_DEFAULT_FUNCTIONS' >> $tmpfile
+  fi
+
+  if test x"$rvalues" = xyes; then
+    echo '#define TTCL_CXX11_RVALUES' >> $tmpfile
+  fi
+
+  if test x"$rvalue_default_functions" = xyes; then
+    echo '#define TTCL_CXX11_RVALUE_DEFAULT_FUNCTIONS' >> $tmpfile
+  fi
+
+  if test x"$template_aliases" = xyes; then
+    echo '#define TTCL_CXX11_TEMPLATE_ALIASES' >> $tmpfile
+  fi
+
+  if test x"$unique_ptr" = xyes; then
+    echo '#define TTCL_CXX11_UNIQUE_PTR' >> $tmpfile
+  fi
+
+  cat >> $tmpfile << _EOF_
+
+#endif
+_EOF_
+
+  mv "$tmpfile" "$outfile"
+],[
+  srcdir=$srcdir
+  default_functions=$ax_cv_cxx_cxx11_default_functions
+  deleted_functions=$ax_cv_cxx_cxx11_deleted_functions
+  nonpublic_default_functions=$ax_cv_cxx_cxx11_nonpublic_default_functions
+  rvalues=$ax_cv_cxx_cxx11_rvalues
+  rvalue_default_functions=$ax_cv_cxx_cxx11_rvalue_default_functions
+  template_aliases=$ax_cv_cxx_cxx11_template_aliases
+  unique_ptr=$ax_cv_cxx_cxx11_unique_ptr
+])
+
 AC_OUTPUT
 
 # Local Variables:

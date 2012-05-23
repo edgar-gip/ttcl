@@ -36,7 +36,7 @@
 #include <boost/type_traits/is_same.hpp>
 #include <boost/type_traits/make_signed.hpp>
 
-#include <ttcl/c++0x.hxx>
+#include <ttcl/c++11.hxx>
 #include <ttcl/global.hxx>
 #include <ttcl/co/_square_matrix_iterator.hxx>
 #include <ttcl/co/_square_matrix_reverse_iterator.hxx>
@@ -83,6 +83,13 @@ namespace ttcl {
 
       /// Const reference
       typedef const _square_matrix_row_ref<const child_type> const_reference;
+
+      /// Element reference
+      TTCL_IMPORT_R_TYPE(container_type, reference, element_reference);
+
+      /// Const element reference
+      TTCL_IMPORT_R_TYPE(container_type, const_reference,
+                         const_element_reference);
 
       /// Pointer
       typedef std::auto_ptr<reference> pointer;
@@ -145,7 +152,7 @@ namespace ttcl {
         data_(_data_size, _element), size_(_size) {
       }
 
-#ifdef TTCL_CXX0X_NONPUBLIC_DEFAULTS
+#ifdef TTCL_CXX11_NONPUBLIC_DEFAULT_FUNCTIONS
       /// Copy constructor
       _square_matrix(const _square_matrix& _other) = default;
 

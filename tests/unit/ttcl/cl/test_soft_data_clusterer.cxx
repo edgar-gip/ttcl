@@ -62,7 +62,8 @@ const double good = 0.6;
 const double bad  = 0.4 / (n_clusters - 1);
 
 // Test
-int main() {
+int
+main() {
   // Plan
   TAP::plan(2 * (2 + n_samples)
             + 2 * (2 + n_samples * n_clusters));

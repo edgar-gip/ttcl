@@ -274,7 +274,8 @@ public:
 /********/
 
 // Main
-int main() {
+int
+main() {
   TAP::plan(7);
 
   f_wrap f_w;

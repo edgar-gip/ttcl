@@ -29,7 +29,7 @@
 
 #include <boost/multi_array.hpp>
 
-#include <ttcl/c++0x.hxx>
+#include <ttcl/c++11.hxx>
 #include <ttcl/global.hxx>
 
 /// TTCL Namespace

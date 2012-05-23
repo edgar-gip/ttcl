@@ -21,7 +21,7 @@
 #include <cstdlib>
 #include <cstring>
 
-#include <ttcl/c++0x.hxx>
+#include <ttcl/c++11.hxx>
 
 using namespace std;
 using namespace ttcl;

@@ -27,7 +27,7 @@
 #include <string>
 #include <vector>
 
-#include <ttcl/c++0x.hxx>
+#include <ttcl/c++11.hxx>
 
 #include <ttcl_mulisp/sexp/sexp_atom.hxx>
 
@@ -56,7 +56,7 @@ namespace ttcl_mulisp {
                      const std::vector<std::string>& _parameters,
                      const std::vector<sexp_ptr>& _body);
 
-#ifdef TTCL_CXX0X_RVALUES
+#ifdef TTCL_CXX11_RVALUES
       /// Move constructor
       sexp_procedure(std::vector<std::string>&& _parameters,
                      std::vector<sexp_ptr>&& _body);

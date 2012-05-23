@@ -27,7 +27,7 @@
 #include <vector>
 
 #include <ttcl/assert.hxx>
-#include <ttcl/c++0x.hxx>
+#include <ttcl/c++11.hxx>
 #include <ttcl/global.hxx>
 #include <ttcl/co/_square_matrix.hxx>
 
@@ -62,6 +62,12 @@ namespace ttcl {
       /// Size type
       TTCL_IMPORT_TYPE(base_type, size_type);
 
+      /// Element reference
+      TTCL_IMPORT_TYPE(base_type, element_reference);
+
+      /// Const element reference
+      TTCL_IMPORT_TYPE(base_type, const_element_reference);
+
     public:
       /// Empty constructor
       TTCL_DEFAULT_CONSTRUCTOR(full_symmetric_matrix);
@@ -87,7 +93,7 @@ namespace ttcl {
           @param _row Row
           @param _col Column
       */
-      element&
+      element_reference
       operator()(size_type _row, size_type _col) {
         if (_row < _col)
           return this->data_[_col * (_col + 1) / 2 + _row];
@@ -100,7 +106,7 @@ namespace ttcl {
           @param _row Row
           @param _col Column
       */
-      const element&
+      const_element_reference
       operator()(size_type _row, size_type _col) const {
         if (_row < _col)
           return this->data_[_col * (_col + 1) / 2 + _row];

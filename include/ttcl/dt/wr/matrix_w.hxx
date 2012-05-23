@@ -26,7 +26,7 @@
 
 #include <cstddef>
 
-#include <ttcl/c++0x.hxx>
+#include <ttcl/c++11.hxx>
 #include <ttcl/exception.hxx>
 #include <ttcl/global.hxx>
 #include <ttcl/wr/interface_wrap.hxx>

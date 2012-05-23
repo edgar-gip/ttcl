@@ -29,7 +29,7 @@
 #include <string>
 #include <unordered_map>
 
-#include <ttcl/c++0x.hxx>
+#include <ttcl/c++11.hxx>
 
 #include <ttcl_mulisp/sexp/sexp.hxx>
 #include <ttcl_mulisp/sexp/sexp_visitor.hxx>

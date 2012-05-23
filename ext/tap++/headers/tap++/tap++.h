@@ -139,7 +139,13 @@ namespace TAP {
 	template<typename T, typename U> typename boost::enable_if<typename boost::is_floating_point<U>::type, bool>::type is(const T& left, const U& right, const std::string& message = "", double epsilon = 0.01) {
 		using namespace TAP::details;
 		try {
-			bool ret = ok(2 * fabs(left - right) / (fabs(left) + fabs(right)) < epsilon);
+			bool ret;
+			if (fabs(left) + fabs(right) < epsilon) {
+			     ret = fabs(left - right) < epsilon;
+			}
+			else {
+			     ret = ok(2 * fabs(left - right) / (fabs(left) + fabs(right)) < epsilon);
+			}
 			if (!ret) {
 				diag(failed_test_msg()," '", message, "'");
 				diag("       Got: ", left);
@@ -194,7 +200,7 @@ namespace TAP {
 		return ok(!boost::is_convertible<T, U>::value, message);
 	}
 
-	extern std::string TODO; 
+	extern std::string TODO;
 
 	class todo_guard {
 		const std::string value;

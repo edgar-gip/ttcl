@@ -16,7 +16,20 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-SUBDIRS = cl co dt fn mf tu wr
+include ../../../../Makefile.am.inc
+
+INCLUDES = -I../../../../include -I../../../../ext/tap++/headers
+
+noinst_PROGRAMS = \
+	test_cross_apply
+
+test_cross_apply_SOURCES = test_cross_apply.cxx
+test_cross_apply_LDADD   = \
+	../../../../src/ttcl/libttcl.la ../../../../ext/tap++/source/libtap++.la
+
+LOG_DRIVER = env AM_TAP_AWK='$(AWK)' $(SHELL) ../../../tap-driver.sh
+
+TESTS = $(noinst_PROGRAMS)
 
 # Local Variables:
 # coding: utf-8

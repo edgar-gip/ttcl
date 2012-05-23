@@ -17,7 +17,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 AM_CXXFLAGS  = \
-	-std=gnu++0x -Wall -Wextra -Wno-sign-compare -Wno-trigraphs \
+	-Wall -Wextra -Wno-sign-compare -Wno-trigraphs \
 	-DTTCL_EXCEPTION_BACKTRACE -DTTCL_EXCEPTION_DEMANGLE \
 	-DBOOST_ENABLE_ASSERT_HANDLER
 
