@@ -27,10 +27,6 @@ test_interface_wrap_SOURCES = test_interface_wrap.cxx
 test_interface_wrap_LDADD   = \
 	../../../../src/ttcl/libttcl.la ../../../../ext/tap++/source/libtap++.la
 
-LOG_DRIVER = env AM_TAP_AWK='$(AWK)' $(SHELL) ../../../tap-driver.sh
-
-TESTS = $(noinst_PROGRAMS)
-
 # Local Variables:
 # coding: utf-8
 # End:

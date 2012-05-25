@@ -49,13 +49,6 @@ using namespace ttcl_mulisp::sexp;
 // Parser
 static sexp_parser parser;
 
-#ifndef TTCL_CXX0X_DEFAULTS
-/// Constructor
-interpreter::
-interpreter() {
-}
-#endif
-
 /// Destructor
 interpreter::
 ~interpreter() {

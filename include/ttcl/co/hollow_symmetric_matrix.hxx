@@ -19,14 +19,12 @@
 #ifndef TTCL_CO_HOLLOW_SYMMETRIC_MATRIX_HXX
 #define TTCL_CO_HOLLOW_SYMMETRIC_MATRIX_HXX
 
-// TTCL: The Template Clustering Library
-
 /** @file
     Containers - Hollow symmetric matrix
     @author Edgar Gonzàlez i Pellicer
 */
 
-#include <vector>
+#include <memory>
 
 #include <ttcl/assert.hxx>
 #include <ttcl/c++11.hxx>
@@ -49,26 +47,26 @@ namespace ttcl {
         @param Container
      */
     template <typename T,
-              typename Container = std::vector<T> >
+              typename Alloc = std::allocator<T> >
     class hollow_symmetric_matrix :
-      public _square_matrix<hollow_symmetric_matrix<T, Container>,
-                            T, Container> {
+      public _square_matrix<hollow_symmetric_matrix<T, Alloc>,
+                            T, Alloc> {
     protected:
       /// Base type
-      typedef _square_matrix<hollow_symmetric_matrix, T, Container> base_type;
+      typedef _square_matrix<hollow_symmetric_matrix, T, Alloc> base_type;
 
     public:
-      /// Element
-      TTCL_IMPORT_TYPE(base_type, element);
+      /// Value type
+      TTCL_IMPORT_TYPE(base_type, value_type);
+
+      /// Reference
+      TTCL_IMPORT_TYPE(base_type, reference);
+
+      /// Const reference
+      TTCL_IMPORT_TYPE(base_type, const_reference);
 
       /// Size type
       TTCL_IMPORT_TYPE(base_type, size_type);
-
-      /// Element reference
-      TTCL_IMPORT_TYPE(base_type, element_reference);
-
-      /// Const element reference
-      TTCL_IMPORT_TYPE(base_type, const_element_reference);
 
     public:
       /// Empty constructor
@@ -77,19 +75,17 @@ namespace ttcl {
       /// Constructor
       hollow_symmetric_matrix(size_type _rows,
                               size_type TTCL_ASSERT_PARAM(_cols),
-                              const element& _element = element()) :
-        base_type(_rows, _rows * (_rows - 1) / 2 + 1, _element) {
+                              const value_type& _value = value_type()) :
+        base_type(_rows, _rows * (_rows - 1) / 2 + 1, _value) {
         TTCL_ASSERT_EQ(_rows, _cols);
-        this->data_.back() = element();
       }
 
       /// Resize
       void
       resize(size_type _rows, size_type _cols,
-             const element& _element = element()) {
+             const value_type& _value = value_type()) {
         TTCL_ASSERT_EQ(_rows, _cols);
-        base_type::resize(_rows, _rows * (_rows - 1) / 2 + 1, _element);
-        this->data_.back() = element();
+        base_type::resize(_rows, _rows * (_rows - 1) / 2 + 1, _value);
       }
 
       /// Element access
@@ -97,7 +93,7 @@ namespace ttcl {
           @param _row Row
           @param _col Column
       */
-      element_reference
+      reference
       operator()(size_type _row, size_type _col) {
         TTCL_ASSERT_NE(_row, _col);
 
@@ -112,7 +108,7 @@ namespace ttcl {
           @param _row Row
           @param _col Column
       */
-      const_element_reference
+      const_reference
       operator()(size_type _row, size_type _col) const {
         TTCL_ASSERT_NE(_row, _col);
 

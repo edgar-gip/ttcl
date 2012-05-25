@@ -54,6 +54,23 @@ AC_DEFUN([AX_CXX_STDCXX_11_DELETED_FUNCTIONS], [dnl
   fi
 ])
 
+AC_DEFUN([AX_CXX_STDCXX_11_LONG_LONG], [dnl
+  AC_CACHE_CHECK(if g++ supports C++11 long long,
+    ax_cv_cxx_cxx11_long_long,
+    [AC_LANG_SAVE
+     AC_LANG_CPLUSPLUS
+     AC_TRY_COMPILE([
+       long long i;],,
+     ax_cv_cxx_cxx11_long_long=yes,
+     ax_cv_cxx_cxx11_long_long=no)
+     AC_LANG_RESTORE])
+
+  if test x"$ax_cv_cxx_cxx11_long_long" = xyes; then
+    AC_DEFINE(STDCXX_11_LONG_LONG,,dnl
+              [Define if g++ supports C++11 long long. ])
+  fi
+])
+
 AC_DEFUN([AX_CXX_STDCXX_11_NON_PUBLIC_DEFAULT_FUNCTIONS], [dnl
   AC_CACHE_CHECK(if g++ supports C++11 non-public default functions,
     ax_cv_cxx_cxx11_nonpublic_default_functions,
@@ -146,6 +163,99 @@ AC_DEFUN([AX_CXX_STDCXX_11_UNIQUE_PTR], [dnl
   fi
 ])
 
+AC_CONFIG_COMMANDS([_c++11.hxx],[dnl
+  outfile=$srcdir/include/ttcl/_c++11.hxx
+  tmpfile=$outfile.tmp
+
+  cat > $tmpfile << _EOF_
+#ifndef _TTCL__CXX11_HXX
+#define _TTCL__CXX11_HXX
+
+_EOF_
+
+  echo '/// Define if g++ supports C++11 default functions.' >> $tmpfile
+  if test x"$default_functions" = xyes; then
+    echo '#define TTCL_CXX11_DEFAULT_FUNCTIONS' >> $tmpfile
+  else
+    echo '/* #undef TTCL_CXX11_DEFAULT_FUNCTIONS */' >> $tmpfile
+  fi
+  echo >> $tmpfile
+
+  echo '/// Define if g++ supports C++11 deleted functions.' >> $tmpfile
+  if test x"$deleted_functions" = xyes; then
+    echo '#define TTCL_CXX11_DELETED_FUNCTIONS' >> $tmpfile
+  else
+    echo '/* #undef TTCL_CXX11_DELETED_FUNCTIONS */' >> $tmpfile
+  fi
+  echo >> $tmpfile
+
+  echo '/// Define if g++ supports C++11 long long.' >> $tmpfile
+  if test x"$long_long" = xyes; then
+    echo '#define TTCL_CXX11_LONG_LONG' >> $tmpfile
+  else
+    echo '/* #undef TTCL_CXX11_LONG_LONG */' >> $tmpfile
+  fi
+  echo >> $tmpfile
+
+  echo '/// Define if g++ supports C++11 non-public default functions.' >> $tmpfile
+  if test x"$nonpublic_default_functions" = xyes; then
+    echo '#define TTCL_CXX11_NONPUBLIC_DEFAULT_FUNCTIONS' >> $tmpfile
+  else
+    echo '/* #undef TTCL_CXX11_NONPUBLIC_DEFAULT_FUNCTIONS */' >> $tmpfile
+  fi
+  echo >> $tmpfile
+
+  echo '/// Define if g++ supports C++11 rvalues.' >> $tmpfile
+  if test x"$rvalues" = xyes; then
+    echo '#define TTCL_CXX11_RVALUES' >> $tmpfile
+  else
+    echo '/* #undef TTCL_CXX11_RVALUES */' >> $tmpfile
+  fi
+  echo >> $tmpfile
+
+  echo '/// Define if g++ supports C++11 rvalue default functions.' >> $tmpfile
+  if test x"$rvalue_default_functions" = xyes; then
+    echo '#define TTCL_CXX11_RVALUE_DEFAULT_FUNCTIONS' >> $tmpfile
+  else
+    echo '/* #undef TTCL_CXX11_RVALUE_DEFAULT_FUNCTIONS */' >> $tmpfile
+  fi
+  echo >> $tmpfile
+
+  echo '/// Define if g++ supports C++11 template aliases.' >> $tmpfile
+  if test x"$template_aliases" = xyes; then
+    echo '#define TTCL_CXX11_TEMPLATE_ALIASES' >> $tmpfile
+  else
+    echo '/* #undef TTCL_CXX11_TEMPLATE_ALIASES */' >> $tmpfile
+  fi
+  echo >> $tmpfile
+
+  echo '/// Define if g++ supports C++11 std::unique_ptr<...>.' >> $tmpfile
+  if test x"$unique_ptr" = xyes; then
+    echo '#define TTCL_CXX11_UNIQUE_PTR' >> $tmpfile
+  else
+    echo '/* #undef TTCL_CXX11_UNIQUE_PTR */' >> $tmpfile
+  fi
+  echo >> $tmpfile
+
+  cat >> $tmpfile << _EOF_
+
+#endif
+_EOF_
+
+  mv "$tmpfile" "$outfile"
+],[
+  srcdir=$srcdir
+  default_functions=$ax_cv_cxx_cxx11_default_functions
+  deleted_functions=$ax_cv_cxx_cxx11_deleted_functions
+  long_long=$ax_cv_cxx_cxx11_long_long
+  nonpublic_default_functions=$ax_cv_cxx_cxx11_nonpublic_default_functions
+  rvalues=$ax_cv_cxx_cxx11_rvalues
+  rvalue_default_functions=$ax_cv_cxx_cxx11_rvalue_default_functions
+  template_aliases=$ax_cv_cxx_cxx11_template_aliases
+  unique_ptr=$ax_cv_cxx_cxx11_unique_ptr
+])
+
 # Local Variables:
 # coding: utf-8
+# indent-tabs-mode: nil
 # End:

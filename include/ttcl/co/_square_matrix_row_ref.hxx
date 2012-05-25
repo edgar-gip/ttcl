@@ -54,25 +54,22 @@ namespace ttcl {
 
     public:
       /// Value type
-      TTCL_IMPORT_R_TYPE(matrix_type, element, value_type);
+      TTCL_IMPORT_TYPE(matrix_type, value_type);
 
       /// Size type
       TTCL_IMPORT_TYPE(matrix_type, size_type);
 
       /// Reference type
-      TTCL_IMPORT_R_TYPE(matrix_type, element_reference, reference);
+      TTCL_IMPORT_TYPE(matrix_type, reference);
 
       /// Const reference type
-      TTCL_IMPORT_R_TYPE(matrix_type, const_element_reference, const_reference);
+      TTCL_IMPORT_TYPE(matrix_type, const_reference);
 
       /// Pointer
-      typedef value_type* pointer;
-
-      /// Const pointer
-      typedef const value_type* const_pointer;
+      TTCL_IMPORT_TYPE(matrix_type, pointer);
 
       /// Difference type
-      typedef std::ptrdiff_t difference_type;
+      TTCL_IMPORT_TYPE(matrix_type, difference_type);
 
       /// Iterator
       typedef _square_matrix_row_iterator<matrix_type,
@@ -105,13 +102,13 @@ namespace ttcl {
       /// Size
       size_type
       size() const {
-        return matrix_->size();
+        return matrix_->columns();
       }
 
       /// Maximum size
       size_type
       max_size() const {
-        return matrix_->size();
+        return matrix_->columns();
       }
 
       /// Empty?

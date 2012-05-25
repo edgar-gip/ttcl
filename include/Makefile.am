@@ -21,6 +21,7 @@ nobase_include_HEADERS = \
 	ttcl/assert.hxx \
 	ttcl/c++11.hxx \
 	ttcl/exception.hxx \
+	ttcl/forward.hxx \
 	ttcl/global.hxx \
 	ttcl/options.hxx \
 	ttcl/sys_exception.hxx \
@@ -28,20 +29,26 @@ nobase_include_HEADERS = \
 	\
 	ttcl/cl/adaptable_data_model.hxx \
 	ttcl/cl/adaptable_data_modeler.hxx \
+	ttcl/cl/adaptable_data_umodeler.hxx \
 	ttcl/cl/data_clusterer.hxx \
 	ttcl/cl/data_model.hxx \
 	ttcl/cl/data_modeler.hxx \
 	ttcl/cl/data_scorer.hxx \
 	ttcl/cl/data_uclusterer.hxx \
+	ttcl/cl/data_umodeler.hxx \
 	ttcl/cl/distance_clusterer.hxx \
 	ttcl/cl/hard_clustering.hxx \
 	ttcl/cl/hard_data_clusterer.hxx \
 	ttcl/cl/hard_data_model.hxx \
 	ttcl/cl/hard_data_modeler.hxx \
 	ttcl/cl/hard_data_uclusterer.hxx \
+	ttcl/cl/hard_data_umodeler.hxx \
 	ttcl/cl/hard_distance_matrix_clusterer.hxx \
 	ttcl/cl/hard_matrix_clusterer.hxx \
 	ttcl/cl/hard_matrix_uclusterer.hxx \
+	ttcl/cl/hier_data_clusterer.hxx \
+	ttcl/cl/hier_distance_matrix_clusterer.hxx \
+	ttcl/cl/hier_matrix_clusterer.hxx \
 	ttcl/cl/matrix_clusterer.hxx \
 	ttcl/cl/matrix_uclusterer.hxx \
 	ttcl/cl/options.hxx \
@@ -49,6 +56,8 @@ nobase_include_HEADERS = \
 	ttcl/cl/soft_data_clusterer.hxx \
 	ttcl/cl/soft_data_model.hxx \
 	ttcl/cl/soft_data_modeler.hxx \
+	ttcl/cl/soft_data_uclusterer.hxx \
+	ttcl/cl/soft_data_umodeler.hxx \
 	ttcl/cl/soft_distance_matrix_clusterer.hxx \
 	ttcl/cl/soft_matrix_clusterer.hxx \
 	ttcl/cl/soft_matrix_uclusterer.hxx \
@@ -57,27 +66,36 @@ nobase_include_HEADERS = \
 	ttcl/cl/wr/data_model_w.hxx \
 	ttcl/cl/wr/data_modeler_w.hxx \
 	ttcl/cl/wr/data_uclusterer_w.hxx \
+	ttcl/cl/wr/hier_data_clusterer_w.hxx \
+	ttcl/cl/wr/hier_matrix_clusterer_w.hxx \
 	ttcl/cl/wr/matrix_clusterer_w.hxx \
 	ttcl/cl/wr/matrix_uclusterer_w.hxx \
 	\
-	ttcl/co/_boost_matrix.hxx \
+	ttcl/co/_dense_forwarder.hxx \
+	ttcl/co/_matrix_forwarder.hxx \
+	ttcl/co/_sparse_forwarder.hxx \
 	ttcl/co/_square_matrix.hxx \
 	ttcl/co/_square_matrix_iterator.hxx \
 	ttcl/co/_square_matrix_reverse_iterator.hxx \
 	ttcl/co/_square_matrix_row_iterator.hxx \
 	ttcl/co/_square_matrix_row_ref.hxx \
-	ttcl/co/cube.hxx \
+	ttcl/co/binary_matrix.hxx \
+	ttcl/co/boost_matrix.hxx \
 	ttcl/co/default_pair.hxx \
 	ttcl/co/fake_pair.hxx \
 	ttcl/co/fortran_matrix.hxx \
 	ttcl/co/full_symmetric_matrix.hxx \
 	ttcl/co/hollow_symmetric_matrix.hxx \
 	ttcl/co/matrix.hxx \
+	ttcl/co/sparse_matrix.hxx \
 	ttcl/co/traits.hxx \
+	ttcl/co/vecvec_matrix.hxx \
 	\
+	ttcl/dt/matrix_data.hxx \
 	ttcl/dt/traits.hxx \
 	\
 	ttcl/dt/wr/data_w.hxx \
+	ttcl/dt/wr/feature_data_w.hxx \
 	ttcl/dt/wr/matrix_w.hxx \
 	\
 	ttcl/fn/cross_apply.hxx \
@@ -87,6 +105,18 @@ nobase_include_HEADERS = \
 	ttcl/fn/squared_euclidean_distance.hxx \
 	ttcl/fn/squared_mahalanobis_distance.hxx \
 	ttcl/fn/traits.hxx \
+	\
+	ttcl/io/_binstream.hxx \
+	ttcl/io/_bzstream.hxx \
+	ttcl/io/_gzstream.hxx \
+	ttcl/io/ianystream.hxx \
+	ttcl/io/ibinstream.hxx \
+	ttcl/io/ibzstream.hxx \
+	ttcl/io/igzstream.hxx \
+	ttcl/io/oanystream.hxx \
+	ttcl/io/obinstream.hxx \
+	ttcl/io/obzstream.hxx \
+	ttcl/io/ogzstream.hxx \
 	\
 	ttcl/mf/coalesce.hxx \
 	ttcl/mf/has_field.hxx \
@@ -103,7 +133,6 @@ nobase_include_HEADERS = \
 	ttcl/ut/demangle.hxx \
 	ttcl/ut/indexed_compare.hxx \
 	ttcl/ut/math.hxx \
-	ttcl/ut/range.hxx \
 	ttcl/ut/reentrant_random.hxx \
 	ttcl/ut/singleton.hxx \
 	ttcl/ut/std_clock.hxx \

@@ -55,9 +55,9 @@ namespace ttcl {
           ttcl::wr::shared_referee(_owned, _references) {
         }
 
-        /// Size
-        virtual size_type
-        size() const = 0;
+        /// Empty
+        virtual bool
+        empty() const = 0;
 
         /// Rows
         virtual size_type
@@ -66,6 +66,10 @@ namespace ttcl {
         /// Columns
         virtual size_type
         columns() const = 0;
+
+        /// Data size
+        virtual size_type
+        data_size() const = 0;
       };
 
       /// Matrix referee
@@ -88,10 +92,10 @@ namespace ttcl {
           return this->ptr_;
         }
 
-        /// Size
-        virtual size_type
-        size() const {
-          return this->ptr_->size();
+        /// Empty
+        virtual bool
+        empty() const {
+          return this->ptr_->empty();
         }
 
         /// Rows
@@ -104,6 +108,12 @@ namespace ttcl {
         virtual size_type
         columns() const {
           return this->ptr_->columns();
+        }
+
+        /// Data size
+        virtual size_type
+        data_size() const {
+          return this->ptr_->data_size();
         }
       };
 
@@ -153,10 +163,10 @@ namespace ttcl {
           return tptr->get();
         }
 
-        /// Size
-        size_type
-        size() const {
-          return this->ptr_->size();
+        /// Empty
+        bool
+        empty() const {
+          return this->ptr_->empty();
         }
 
         /// Rows
@@ -170,30 +180,38 @@ namespace ttcl {
         columns() const {
           return this->ptr_->columns();
         }
+
+        /// Data size
+        size_type
+        data_size() const {
+          return this->ptr_->data_size();
+        }
       };
 
       /// Matrix wrapper
       class matrix_w :
         public _matrix_w<_matrix_interface> {
-      public:
-        /// Base type
-        typedef _matrix_w<_matrix_interface> base_type;
+      private:
+        /// Interface
+        typedef _matrix_interface interface;
 
+        /// Base type
+        typedef _matrix_w<interface> base_type;
+
+      public:
         /// Empty Constructor
         TTCL_DEFAULT_CONSTRUCTOR(matrix_w);
 
         /// Constructor
         template <typename T>
         matrix_w(T* _value, bool _owned = true) :
-          base_type(new _matrix_referee<
-                      T, _matrix_interface>(_value, _owned)) {
+          base_type(new _matrix_referee<T, interface>(_value, _owned)) {
         }
 
         /// Constructor
         template <typename T>
         matrix_w(T& _value, bool _owned = false) :
-          base_type(new _matrix_referee<
-                      T, _matrix_interface>(&_value, _owned)) {
+          base_type(new _matrix_referee<T, interface>(&_value, _owned)) {
         }
 
         /// Copy constructor

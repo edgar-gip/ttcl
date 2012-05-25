@@ -21,7 +21,12 @@ include ../../../../Makefile.am.inc
 INCLUDES = -I../../../../include -I../../../../ext/tap++/headers
 
 noinst_PROGRAMS = \
-	test_full_symmetric_matrix test_hollow_symmetric_matrix
+	test_fortran_matrix test_full_symmetric_matrix \
+	test_hollow_symmetric_matrix test_matrix test_vecvec_matrix
+
+test_fortran_matrix_SOURCES = test_fortran_matrix.cxx
+test_fortran_matrix_LDADD   = \
+	../../../../src/ttcl/libttcl.la ../../../../ext/tap++/source/libtap++.la
 
 test_full_symmetric_matrix_SOURCES = test_full_symmetric_matrix.cxx
 test_full_symmetric_matrix_LDADD   = \
@@ -31,9 +36,13 @@ test_hollow_symmetric_matrix_SOURCES = test_hollow_symmetric_matrix.cxx
 test_hollow_symmetric_matrix_LDADD   = \
 	../../../../src/ttcl/libttcl.la ../../../../ext/tap++/source/libtap++.la
 
-LOG_DRIVER = env AM_TAP_AWK='$(AWK)' $(SHELL) ../../../tap-driver.sh
+test_matrix_SOURCES = test_matrix.cxx
+test_matrix_LDADD   = \
+	../../../../src/ttcl/libttcl.la ../../../../ext/tap++/source/libtap++.la
 
-TESTS = $(noinst_PROGRAMS)
+test_vecvec_matrix_SOURCES = test_vecvec_matrix.cxx
+test_vecvec_matrix_LDADD   = \
+	../../../../src/ttcl/libttcl.la ../../../../ext/tap++/source/libtap++.la
 
 # Local Variables:
 # coding: utf-8

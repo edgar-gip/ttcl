@@ -1,7 +1,9 @@
 #ifndef LIB_PERLPP_LIB_TAPPP_TAPPP_H
 #define LIB_PERLPP_LIB_TAPPP_TAPPP_H
 
+#include <cassert>
 #include <iostream>
+#include <limits>
 #include <string>
 #include <boost/type_traits/is_convertible.hpp>
 #include <boost/type_traits/is_floating_point.hpp>
@@ -136,16 +138,32 @@ namespace TAP {
 		}
 	}
 
+	// Safe floating division
+	/* Adapted from <boost/test/floating_point_comparison.hpp> */
+	template<typename T> inline T safe_fpt_div(const T& _num, const T& _den) {
+		// Both _num and _den are unsigned here
+		assert(_num >= T(0));
+		assert(_den >= T(0));
+
+		// Avoid overflow.
+		if (_den < T(1) and _num > _den * std::numeric_limits<T>::max())
+		return std::numeric_limits<T>::max();
+
+		// Avoid underflow.
+		if (_num == T(0) or (_den > T(1) and _num < _den * std::numeric_limits<T>::min()))
+		return T(0);
+
+		return _num / _den;
+	}
+
 	template<typename T, typename U> typename boost::enable_if<typename boost::is_floating_point<U>::type, bool>::type is(const T& left, const U& right, const std::string& message = "", double epsilon = 0.01) {
 		using namespace TAP::details;
 		try {
-			bool ret;
-			if (fabs(left) + fabs(right) < epsilon) {
-			     ret = fabs(left - right) < epsilon;
-			}
-			else {
-			     ret = ok(2 * fabs(left - right) / (fabs(left) + fabs(right)) < epsilon);
-			}
+			/* Adapted from <boost/test/floating_point_comparison.hpp> */
+			T diff = std::abs(left - right);
+			T d1   = safe_fpt_div(diff, std::abs(right));
+			T d2   = safe_fpt_div(diff, std::abs(left));
+			bool ret = ok(d1 <= epsilon and d2 <= epsilon, message);
 			if (!ret) {
 				diag(failed_test_msg()," '", message, "'");
 				diag("       Got: ", left);
@@ -174,7 +192,11 @@ namespace TAP {
 	template<typename T, typename U> typename boost::enable_if<typename boost::is_floating_point<U>::type, bool>::type isnt(const T& left, const U& right, const std::string& message = "", double epsilon = 0.01) {
 		using namespace TAP::details;
 		try {
-			bool ret = 2 * fabs(left - right) / (fabs(left) + fabs(right)) > epsilon;
+			/* Adapted from <boost/test/floating_point_comparison.hpp> */
+			T diff = std::abs(left - right);
+			T d1   = safe_fpt_div(diff, std::abs(right));
+			T d2   = safe_fpt_div(diff, std::abs(left));
+			bool ret = d1 > epsilon or d2 > epsilon;
 			ok(ret, message);
 			return ret;
 		}

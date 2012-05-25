@@ -26,31 +26,8 @@
 
 #include <ttcl/_c++11.hxx>
 
-// Define if g++ supports C++11 default functions.
-/* #undef TTCL_CXX11_DEFAULT_FUNCTIONS */
-
-// Define if g++ supports C++11 deleted functions.
-/* #undef TTCL_CXX11_DELETED_FUNCTIONS */
-
-// Define if g++ supports C++11 non-public default functions.
-/* #undef TTCL_CXX11_NONPUBLIC_DEFAULT_FUNCTIONS */
-
-// Define if g++ supports C++11 rvalues.
-/* #undef TTCL_CXX11_RVALUES */
-
-// Define if g++ supports C++11 rvalue default functions.
-/* #undef TTCL_CXX11_RVALUE_DEFAULT_FUNCTIONS */
-
-// Define if g++ supports C++11 template aliases.
-/* #undef TTCL_CXX11_TEMPLATE_ALIASES */
-
-/// C++0x unique pointers
-#if __GNUC__ == 4 && __GNUC_MINOR__ >= 5 && defined(__GXX_EXPERIMENTAL_CXX0X__)
-# define TTCL_CXX0X_UNIQUE_PTR
-#endif
-
 /// Unique ptr
-#ifdef TTCL_CXX0X_UNIQUE_PTR
+#ifdef TTCL_CXX11_UNIQUE_PTR
 # define TTCL_AUTO_PTR std::unique_ptr
 #else
 # define TTCL_AUTO_PTR std::auto_ptr
@@ -61,13 +38,6 @@
 # define TTCL_DEFAULT = default
 #else
 # define TTCL_DEFAULT
-#endif
-
-/// Delete
-#ifdef TTCL_CXX11_DELETED_FUNCTIONS
-# define TTCL_DELETE = delete
-#else
-# define TTCL_DELETE
 #endif
 
 /// Default constructor
@@ -86,6 +56,13 @@
 #else
 # define TTCL_DEFAULT_NONPUBLIC_CONSTRUCTOR(_class)     \
   _class() {}
+#endif
+
+/// Delete
+#ifdef TTCL_CXX11_DELETED_FUNCTIONS
+# define TTCL_DELETE = delete
+#else
+# define TTCL_DELETE
 #endif
 
 /// Deleted constructor

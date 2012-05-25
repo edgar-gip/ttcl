@@ -21,16 +21,17 @@ include ../../../../../Makefile.am.inc
 INCLUDES = -I../../../../../include -I../../../../../ext/tap++/headers
 
 noinst_PROGRAMS = \
-	test_matrix_w
+	test_feature_data_w test_matrix_w
+
+test_feature_data_w_SOURCES = test_feature_data_w.cxx
+test_feature_data_w_LDADD   = \
+	../../../../../src/ttcl/libttcl.la \
+	../../../../../ext/tap++/source/libtap++.la
 
 test_matrix_w_SOURCES = test_matrix_w.cxx
 test_matrix_w_LDADD   = \
 	../../../../../src/ttcl/libttcl.la \
 	../../../../../ext/tap++/source/libtap++.la
-
-LOG_DRIVER = env AM_TAP_AWK='$(AWK)' $(SHELL) ../../../../tap-driver.sh
-
-TESTS = $(noinst_PROGRAMS)
 
 # Local Variables:
 # coding: utf-8

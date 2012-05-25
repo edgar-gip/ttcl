@@ -159,8 +159,8 @@ namespace ttcl {
       template <typename Matrix>
       operator Matrix() const {
         // Types
-        TTCL_IMPORT_TYPE  (Matrix, size_type);
-        TTCL_IMPORT_R_TYPE(Matrix, element, value_type);
+        TTCL_IMPORT_TYPE(Matrix, size_type);
+        TTCL_IMPORT_TYPE(Matrix, value_type);
 
         // Create the output (and reset)
         size_type size = seq_.size();

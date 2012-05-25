@@ -30,12 +30,11 @@
 // Main
 int
  main() {
-  TAP::plan(44);
+  TAP::plan(40);
 
   ttcl::dt::wr::matrix_w m_w;
 
   m_w = new ttcl::co::full_symmetric_matrix<int>(3, 3);
-  TAP::is(m_w.size(), 3);
   TAP::is(m_w.rows(), 3);
   TAP::is(m_w.columns(), 3);
   TAP::ok    (m_w.is< ttcl::co::full_symmetric_matrix<int> >());
@@ -48,7 +47,6 @@ int
   TAP::not_ok(m_w.is< ttcl::co::fortran_matrix<double> >());
 
   m_w = new ttcl::co::hollow_symmetric_matrix<int>(3, 3);
-  TAP::is(m_w.size(), 3);
   TAP::is(m_w.rows(), 3);
   TAP::is(m_w.columns(), 3);
   TAP::not_ok(m_w.is< ttcl::co::full_symmetric_matrix<int> >());
@@ -61,7 +59,6 @@ int
   TAP::not_ok(m_w.is< ttcl::co::fortran_matrix<double> >());
 
   m_w = new ttcl::co::matrix<int>(3, 3);
-  TAP::is(m_w.size(), 3);
   TAP::is(m_w.rows(), 3);
   TAP::is(m_w.columns(), 3);
   TAP::not_ok(m_w.is< ttcl::co::full_symmetric_matrix<int> >());
@@ -74,7 +71,6 @@ int
   TAP::not_ok(m_w.is< ttcl::co::fortran_matrix<double> >());
 
   m_w = new ttcl::co::fortran_matrix<int>(3, 3);
-  TAP::is(m_w.size(), 3);
   TAP::is(m_w.rows(), 3);
   TAP::is(m_w.columns(), 3);
   TAP::not_ok(m_w.is< ttcl::co::full_symmetric_matrix<int> >());

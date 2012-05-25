@@ -31,10 +31,6 @@ test_soft_data_clusterer_SOURCES = test_soft_data_clusterer.cxx
 test_soft_data_clusterer_LDADD   = \
 	../../../../src/ttcl/libttcl.la ../../../../ext/tap++/source/libtap++.la
 
-LOG_DRIVER = env AM_TAP_AWK='$(AWK)' $(SHELL) ../../../tap-driver.sh
-
-TESTS = $(noinst_PROGRAMS)
-
 # Local Variables:
 # coding: utf-8
 # End:

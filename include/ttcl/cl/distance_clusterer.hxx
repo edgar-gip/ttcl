@@ -21,11 +21,14 @@
 
 /** @file
     Clustering - Distance clusterer mixin
-    @author Edgar Gonzalez i Pellicer
+    @author Edgar Gonzàlez i Pellicer
 */
 
 #include <boost/mpl/placeholders.hpp>
 
+#include <ttcl/cl/hard_data_clusterer.hpp>
+#include <ttcl/cl/hier_data_clusterer.hpp>
+#include <ttcl/cl/soft_data_clusterer.hpp>
 #include <ttcl/tu/choices.hxx>
 
 /// TTCL Namespace
@@ -35,7 +38,7 @@ namespace ttcl {
   namespace cl {
 
     /// Distance clusterer mixin
-    /** @param Data The data type
+    /** @param Data     The data type
         @param Distance The distance type
     */
     template <typename Base,
@@ -83,6 +86,17 @@ namespace ttcl {
       };
     };
 
+    /// Hierarchical distance clusterer constructor
+    struct hier_distance_clusterer_c {
+      template <typename Data,
+                typename Distance,
+                typename Choices = ttcl::tu::default_choices>
+      struct apply {
+        typedef distance_clusterer<hier_data_clusterer<Data, Choices>,
+                                   Distance> type;
+      };
+    };
+
     /// Soft distance clusterer constructor
     struct soft_distance_clusterer_c {
       template <typename Data,
@@ -94,12 +108,18 @@ namespace ttcl {
       };
     };
 
-#ifdef TTCL_CXX0X_TEMPLATE_ALIASES
+#ifdef TTCL_CXX11_TEMPLATE_ALIASES
     /// Hard distance clusterer
     template <typename Data, typename Distance,
               typename Choices = ttcl::tu::choices>
     using hard_distance_clusterer =
       distance_clusterer<hard_data_clusterer<Data, Choices>, Distance>;
+
+    /// Hierarchical distance clusterer
+    template <typename Data, typename Distance,
+              typename Choices = ttcl::tu::choices>
+    using hier_distance_clusterer =
+      distance_clusterer<hier_data_clusterer<Data, Choices>, Distance>;
 
     /// Soft distance clusterer
     template <typename Data, typename Distance,

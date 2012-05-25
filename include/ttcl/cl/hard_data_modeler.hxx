@@ -104,8 +104,8 @@ namespace ttcl {
       model(const data_type& _data,
             const uint _n_clusters) const {
         // Cluster and return
-        soft_clustering_type soft_clustering(_data.size(), _n_clusters);
-        return soft_model_on(soft_clustering, _data, _n_clusters);
+        hard_clustering_type hard_clustering(_data.size(), _n_clusters);
+        return hard_model_on(hard_clustering, _data, _n_clusters);
       }
     };
   }

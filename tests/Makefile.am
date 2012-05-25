@@ -18,6 +18,31 @@
 
 SUBDIRS = unit
 
+LOG_DRIVER = env AM_TAP_AWK='$(AWK)' $(SHELL) tap-driver.sh
+
+TESTS = \
+	unit/ttcl/cl/test_hard_data_clusterer \
+	unit/ttcl/cl/test_soft_data_clusterer \
+	\
+	unit/ttcl/co/test_fortran_matrix \
+	unit/ttcl/co/test_full_symmetric_matrix \
+	unit/ttcl/co/test_hollow_symmetric_matrix \
+	unit/ttcl/co/test_matrix \
+	unit/ttcl/co/test_vecvec_matrix \
+	\
+	unit/ttcl/dt/wr/test_feature_data_w \
+	unit/ttcl/dt/wr/test_matrix_w \
+	\
+	unit/ttcl/fn/test_cross_apply \
+	\
+	unit/ttcl/mf/test_coalesce \
+	unit/ttcl/mf/test_maximum_common_type \
+	unit/ttcl/mf/test_metaclass_of \
+	\
+	unit/ttcl/tu/test_choices \
+	\
+	unit/ttcl/wr/test_interface_wrap
+
 # Local Variables:
 # coding: utf-8
 # End:

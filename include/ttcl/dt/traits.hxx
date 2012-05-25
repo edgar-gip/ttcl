@@ -19,22 +19,12 @@
 #ifndef TTCL_DT_TRAITS_HXX
 #define TTCL_DT_TRAITS_HXX
 
-// TTCL: The Template Clustering Library
-
 /** @file
     Data - Traits
-    @author Edgar Gonzalez i Pellicer
+    @author Edgar Gonzàlez i Pellicer
 */
 
-#include <cstddef>
-#include <utility>
-
-#include <boost/mpl/not.hpp>
 #include <boost/type_traits/integral_constant.hpp>
-#include <boost/utility/enable_if.hpp>
-
-#include <ttcl/co/fake_pair.hxx>
-#include <ttcl/ut/traits.hxx>
 
 /// TTCL Namespace
 namespace ttcl {
@@ -42,83 +32,16 @@ namespace ttcl {
   /// Data Namespace
   namespace dt {
 
-    /// Has value type
-    TTCL_HAS_TYPE(has_value_type, value_type);
-
-
-    /// Is sparse item
+    /// Is dense data
     template <typename T>
-    struct is_sparse_item :
+    struct is_dense_data :
       public boost::false_type {
     };
 
-    /// Is sparse item
-    /** Specialization for std::pair
-     */
-    template <typename T1, typename T2>
-    struct is_sparse_item< std::pair<T1, T2> > :
-      public boost::true_type {
-    };
-
-    /// Is sparse item
-    /** Specialization for ttcl::co::fake_pair_second
-     */
-    template <typename T1, typename T2, int V2>
-    struct is_sparse_item< ttcl::co::fake_pair_second<T1, T2, V2> > :
-      public boost::true_type {
-    };
-
-
-    /// Is dense item
+    /// Is sparse data
     template <typename T>
-    struct is_dense_item :
-      public boost::mpl::not_< is_sparse_item<T> > {
-    };
-
-
-    /// Is sparse sample
-    template <typename T, typename Enable = void>
-    struct is_sparse_sample :
+    struct is_sparse_data :
       public boost::false_type {
-    };
-
-    /// Is sparse sample
-    /** Specialization for containers of sparse items
-     */
-    template <typename T>
-    struct is_sparse_sample
-      <T, typename boost::enable_if< has_value_type<T> >::type> :
-      public is_sparse_item<typename T::value_type> {
-    };
-
-
-    /// Is dense sample
-    template <typename T>
-    struct is_dense_sample :
-      public boost::mpl::not_< is_sparse_sample<T> > {
-    };
-
-
-    /// Is sparse container
-    template <typename T, typename Enable = void>
-    struct is_sparse_container :
-      public boost::false_type {
-    };
-
-    /// Is sparse container
-    /** Specialization for containers of sparse samples
-     */
-    template <typename T>
-    struct is_sparse_container
-      <T, typename boost::enable_if< has_value_type<T> >::type> :
-      public is_sparse_sample<typename T::value_type> {
-    };
-
-
-    /// Is dense container
-    template <typename T>
-    struct is_dense_container :
-      public boost::mpl::not_< is_sparse_container<T> > {
     };
   }
 }

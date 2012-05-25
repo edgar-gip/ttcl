@@ -40,6 +40,11 @@
 #define TTCL_IMPORT_R_TYPE(class, type, newtype)        \
   typedef typename class::type newtype
 
+/// Forwarded arguments
+#ifndef TTCL_FORWARDED_ARGS
+#define TTCL_FORWARDED_ARGS 6
+#endif
+
 #endif
 
 // Local Variables:

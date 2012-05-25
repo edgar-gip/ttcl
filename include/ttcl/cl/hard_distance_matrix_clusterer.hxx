@@ -24,7 +24,10 @@
     @author Edgar Gonzàlez i Pellicer
 */
 
-#include <ttcl/cl/hard_distance_clusterer.hxx>
+#include <boost/mpl/apply.hpp>
+
+#include <ttcl/global.hxx>
+#include <ttcl/cl/distance_clusterer.hxx>
 #include <ttcl/fn/cross_apply.hxx>
 #include <ttcl/tu/choices.hxx>
 
@@ -40,25 +43,27 @@ namespace ttcl {
               typename MatrixClusterer,
               typename Choices = tu::default_choices>
     class hard_distance_matrix_clusterer :
-      public hard_distance_clusterer<Data, Distance, Choices> {
+      public boost::mpl::apply<
+        hard_distance_clusterer_c, Data, Distance, Choices> >::type {
     public:
       /// Base type
-      typedef distance_clusterer<Data, Distance, Choices> base_type;
+      typedef boost::mpl::apply<
+        hard_distance_clusterer_c, Data, Distance, Choices>::type base_type;
 
       /// Data type
-      typedef typename base_type::data_type data_type;
+      TTCL_IMPORT_TYPE(base_type, data_type);
 
       /// Clustering type
-      typedef typename base_type::hard_clustering_type hard_clustering_type;
+      TTCL_IMPORT_TYPE(base_type, hard_clustering_type);
 
       /// Distance type
-      typedef typename base_type::distance_type distance_type;
+      TTCL_IMPORT_TYPE(base_type, distance_type);
 
       /// Matrix clusterer type
       typedef MatrixClusterer matrix_clusterer_type;
 
       /// Distance matrix type
-      typedef typename matrix_clusterer_type::matrix_type matrix_type;
+      TTCL_IMPORT_TYPE(matrix_clusterer_type, matrix_type);
 
     protected:
       /// Base matrix clusterer

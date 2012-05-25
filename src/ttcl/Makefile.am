@@ -18,7 +18,7 @@
 
 include ../../Makefile.am.inc
 
-SUBDIRS = cl ut tu wr
+SUBDIRS = cl io ut tu wr
 
 INCLUDES = -I../../include
 
@@ -30,8 +30,8 @@ libttcl_core_la_SOURCES = \
 
 libttcl_la_SOURCES =
 libttcl_la_LIBADD  = \
-	libttcl_core.la cl/libttcl_cl.la ut/libttcl_ut.la tu/libttcl_tu.la \
-	wr/libttcl_wr.la
+	libttcl_core.la cl/libttcl_cl.la io/libttcl_io.la ut/libttcl_ut.la \
+	tu/libttcl_tu.la wr/libttcl_wr.la
 
 # Local Variables:
 # coding: utf-8

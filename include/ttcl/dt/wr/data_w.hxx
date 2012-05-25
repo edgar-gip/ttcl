@@ -26,6 +26,7 @@
 
 #include <cstddef>
 
+#include <ttcl/c++11.hxx>
 #include <ttcl/exception.hxx>
 #include <ttcl/wr/interface_wrap.hxx>
 #include <ttcl/wr/typed_shared_referee.hxx>
@@ -52,10 +53,6 @@ namespace ttcl {
           ttcl::wr::shared_referee(_owned, _references) {
         }
 
-        /// Size
-        virtual size_type
-        size() const = 0;
-
         /// Samples
         virtual size_type
         samples() const = 0;
@@ -72,19 +69,13 @@ namespace ttcl {
 
         /// Constructor
         _data_referee(T* _ptr = 0, bool _owned = true) :
-          ttcl::wr::typed_shared_referee<T>(_ptr, _owned) {
+          ttcl::wr::typed_shared_referee<T, Interface>(_ptr, _owned) {
         }
 
         /// Get
         T*
         get() const {
           return this->ptr_;
-        }
-
-        /// Size
-        virtual size_type
-        size() const {
-          return this->ptr_->size();
         }
 
         /// Samples
@@ -125,7 +116,7 @@ namespace ttcl {
         bool
         is() const {
           return dynamic_cast<
-            const _data_referee<T, Interface>*>(ptr_.ptr()) != NULL;
+            const _data_referee<T, Interface>*>(this->ptr_.ptr()) != NULL;
         }
 
         /// Get!
@@ -133,16 +124,10 @@ namespace ttcl {
         T*
         get() const {
           const _data_referee<T, Interface>* tptr =
-            dynamic_cast<const _data_referee<T, Interface>*>(ptr_.ptr());
+            dynamic_cast<const _data_referee<T, Interface>*>(this->ptr_.ptr());
           if (not tptr)
             TTCL_FIRE("Bad cast");
           return tptr->get();
-        }
-
-        /// Size
-        size_type
-        size() const {
-          return this->ptr_->size();
         }
 
         /// Samples
@@ -155,23 +140,27 @@ namespace ttcl {
       /// Data wrapper
       class data_w :
         public _data_w<_data_interface> {
-      public:
-        /// Base type
-        typedef _data_w<_data_interface> base_type;
+      private:
+        /// Interface type
+        typedef _data_interface interface;
 
+        /// Base type
+        typedef _data_w<interface> base_type;
+
+      public:
         /// Empty Constructor
         TTCL_DEFAULT_CONSTRUCTOR(data_w);
 
         /// Constructor
         template <typename T>
         data_w(T* _value, bool _owned = true) :
-          base_type(new _data_referee<T>(_value, _owned)) {
+          base_type(new _data_referee<T, interface>(_value, _owned)) {
         }
 
         /// Constructor
         template <typename T>
         data_w(T& _value, bool _owned = false) :
-          base_type(new _data_referee<T>(&_value, _owned)) {
+          base_type(new _data_referee<T, interface>(&_value, _owned)) {
         }
 
         /// Copy constructor

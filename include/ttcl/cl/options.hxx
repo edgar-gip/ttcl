@@ -43,10 +43,15 @@ namespace ttcl {
     enum softness_enum { SOFTNESS_HARD, SOFTNESS_SOFT,
                          DEFAULT_SOFTNESS = SOFTNESS_SOFT };
 
+    /// Dendrogram value
+    /** Choice
+     */
+    TTCL_TU_CHOICE(dendrogram_value, double);
+
     /// Distance matrix constructor
     /** Choice
      */
-    TTCL_TU_CHOICE(distance_matrix_constructor,
+    TTCL_TU_CHOICE(distance_matrix_c,
                    co::hollow_symmetric_matrix<boost::mpl::_1>);
 
     /// Hard Clustering Container

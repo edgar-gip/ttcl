@@ -24,8 +24,10 @@
     @author Edgar Gonzàlez i Pellicer
 */
 
+#include <boost/mpl/apply.hpp>
+
 #include <ttcl/global.hxx>
-#include <ttcl/cl/soft_distance_clusterer.hxx>
+#include <ttcl/cl/distance_clusterer.hxx>
 #include <ttcl/fn/cross_apply.hxx>
 
 /// TTCL Namespace
@@ -40,10 +42,12 @@ namespace ttcl {
               typename MatrixClusterer,
               typename Choices = tu::default_choices>
     class soft_distance_matrix_clusterer :
-      public soft_distance_clusterer<Data, Distance, Choices> {
+      public boost::mpl::apply<
+        soft_distance_clusterer_c, Data, Distance, Choices>::type {
     public:
       /// Base type
-      typedef distance_clusterer<Data, Distance, Choices> base_type;
+      typedef boost::mpl::apply<
+        soft_distance_clusterer_c, Data, Distance, Choices>::type base_type;
 
       /// Data type
       TTCL_IMPORT_TYPE(base_type, data_type);

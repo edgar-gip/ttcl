@@ -89,11 +89,7 @@ namespace ttcl {
       */
       virtual model_type*
       model(const data_type& _data,
-            const uint _n_clusters) const {
-        // Cluster and return
-        hard_clustering_type hard_clustering(_data.size(), _n_clusters);
-        return hard_model_on(hard_clustering, _data, _n_clusters);
-      }
+            const uint _n_clusters) const = 0;
 
       /// Perform the hard clustering
       /** @param _hard_clustering Target hard clustering

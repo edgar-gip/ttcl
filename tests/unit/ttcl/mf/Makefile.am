@@ -35,10 +35,6 @@ test_metaclass_of_SOURCES = test_metaclass_of.cxx
 test_metaclass_of_LDADD   = \
 	../../../../src/ttcl/libttcl.la ../../../../ext/tap++/source/libtap++.la
 
-LOG_DRIVER = env AM_TAP_AWK='$(AWK)' $(SHELL) ../../../tap-driver.sh
-
-TESTS = $(noinst_PROGRAMS)
-
 # Local Variables:
 # coding: utf-8
 # End:

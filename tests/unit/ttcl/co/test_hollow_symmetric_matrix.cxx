@@ -37,13 +37,14 @@ main() {
   typedef ttcl::co::hollow_symmetric_matrix<int> matrix_type;
 
   // Plan
-  TAP::plan(50);
+  TAP::plan(57);
 
   // First matrix
   matrix_type m1(nelems, nelems);
 
   // Size is OK
-  TAP::is(m1.size(),      nelems);
+  TAP::is(m1.rows(),      nelems);
+  TAP::is(m1.columns(),   nelems);
   TAP::is(m1.data_size(), nelems * (nelems - 1) / 2 + 1);
 
   // Fill it
@@ -67,10 +68,11 @@ main() {
   // Iterate
   {
     matrix_type::size_type r = 0;
-    for (matrix_type::const_iterator r_it = m1.begin();
-         r_it != m1.end(); ++r_it, ++r) {
+    for (matrix_type::const_row_iterator r_it = m1.row_begin();
+         r_it != m1.row_end(); ++r_it, ++r) {
+      TAP::is(r_it->size(), nelems);
       matrix_type::size_type c = 0;
-      for (matrix_type::value_type::const_iterator c_it = r_it->begin();
+      for (matrix_type::row_type::const_iterator c_it = r_it->begin();
            c_it != r_it->end(); ++c_it, ++c) {
         if (r != c)
           TAP::is(*c_it, hollow_data[r][c]);
@@ -81,10 +83,11 @@ main() {
   // Reverse iterate
   {
     matrix_type::size_type r = nelems;
-    for (matrix_type::const_reverse_iterator r_it = m1.rbegin();
-         r_it != m1.rend(); ++r_it, --r) {
+    for (matrix_type::const_reverse_row_iterator r_it = m1.row_rbegin();
+         r_it != m1.row_rend(); ++r_it, --r) {
+      TAP::is(r_it->size(), nelems);
       matrix_type::size_type c = nelems;
-      for (matrix_type::value_type::const_reverse_iterator c_it =
+      for (matrix_type::row_type::const_reverse_iterator c_it =
              r_it->rbegin(); c_it != r_it->rend(); ++c_it, --c) {
         if (r != c)
           TAP::is(*c_it, hollow_data[r - 1][c - 1]);

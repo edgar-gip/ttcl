@@ -89,10 +89,7 @@ namespace ttcl {
        */
       template <typename Cont>
       hard_clustering(const soft_clustering<Cont>& _other) :
-        base_type(_other.size()), clusters_(_other.clusters()) {
-        // Element
-        typedef typename soft_clustering<Cont>::element element;
-
+        base_type(_other.samples()), clusters_(_other.clusters()) {
         // Set each
         for (size_type row = 0; row < this->size(); ++row) {
           // Set to the most probable cluster
@@ -117,11 +114,8 @@ namespace ttcl {
        */
       template <typename Cont>
       hard_clustering& operator=(const soft_clustering<Cont>& _other) {
-        // Element
-        typedef typename soft_clustering<Cont>::element element;
-
         // Resize
-        this->resize(_other.size());
+        this->resize(_other.samples());
         clusters_ = _other.clusters();
 
         // Set each
@@ -154,9 +148,14 @@ namespace ttcl {
         clusters_ = _clusters;
       }
 
+      /// Number of samples
+      size_type
+      samples() const {
+        return this->size();
+      }
+
       /// Number of clusters
       value_type clusters() const {
-        // Numer of clusters
         return clusters_;
       }
 
@@ -165,7 +164,6 @@ namespace ttcl {
           @warning No checking is done
       */
       void set_clusters(value_type _clusters) {
-        // Update
         clusters_ = _clusters;
       }
 

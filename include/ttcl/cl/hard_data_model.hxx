@@ -63,7 +63,6 @@ namespace ttcl {
       /// Perform the soft clustering
       /** @param _soft_clustering Target soft clustering
           @param _data Data
-          @param _n_clusters Number of clusters
       */
       virtual void
       soft_cluster_on(soft_clustering_type& _soft_clustering,

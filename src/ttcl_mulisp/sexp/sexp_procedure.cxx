@@ -34,7 +34,7 @@ sexp_procedure(const string& _name,
   name_(_name), parameters_(_parameters), body_(_body) {
 }
 
-#ifdef TTCL_CXX0X_RVALUES
+#ifdef TTCL_CXX11_RVALUES
 /// Move constructor
 sexp_procedure::
 sexp_procedure(std::vector<std::string>&& _parameters,

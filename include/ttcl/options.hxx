@@ -42,7 +42,7 @@ namespace ttcl {
   /// Parameter allocator constructor
   /** Choice
    */
-  TTCL_TU_CHOICE(allocator_constructor, std::allocator<boost::mpl::_1>);
+  TTCL_TU_CHOICE(allocator_c, std::allocator<boost::mpl::_1>);
 
   /// @}
 }

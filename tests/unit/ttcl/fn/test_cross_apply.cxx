@@ -91,9 +91,9 @@ test_matrix_function(const std::vector<double>& _data,
   if (c1 && c2) {
     for (uint i = 0; i < m.rows(); ++i) {
       for (uint j = 0; j < m.columns(); ++j) {
-	if (i != j or not is_hollow) {
-	  TAP::is(m[i][j], _truth[i][j]);
-	}
+        if (i != j or not is_hollow) {
+          TAP::is(m[i][j], _truth[i][j]);
+        }
       }
     }
   }
@@ -146,7 +146,7 @@ test_data(const Data& _data) {
 // Main
 int
 main() {
-  TAP::plan(164);
+  TAP::plan(168);
 
   std::vector<double> d_data(data, data + n_data);
   test_data(d_data);

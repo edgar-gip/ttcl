@@ -30,7 +30,7 @@
 #include <boost/multi_array.hpp>
 
 #include <ttcl/global.hxx>
-#include <ttcl/co/_boost_matrix.hxx>
+#include <ttcl/co/boost_matrix.hxx>
 
 /// TTCL Namespace
 namespace ttcl {
@@ -39,15 +39,16 @@ namespace ttcl {
   namespace co {
 
     /// Matrix
-    template <typename T, typename Alloc = std::allocator<T> >
+    template <typename T,
+              typename Alloc = std::allocator<T> >
     class matrix :
-      public _boost_matrix<T, Alloc> {
+      public boost_matrix<T, Alloc> {
     public:
       /// Base type
-      typedef _boost_matrix<T, Alloc> base_type;
+      typedef boost_matrix<T, Alloc> base_type;
 
-      /// Element type
-      TTCL_IMPORT_TYPE(base_type, element);
+      /// Value type
+      TTCL_IMPORT_TYPE(base_type, value_type);
 
       /// Size type
       TTCL_IMPORT_TYPE(base_type, size_type);
@@ -59,15 +60,17 @@ namespace ttcl {
       /** @param _rows  Rows
           @param _cols  Cols
       */
-      matrix(const size_type _rows, const size_type _cols);
+      matrix(const size_type _rows,
+             const size_type _cols);
 
       /// Constructor
       /** @param _rows Rows
           @param _cols Cols
           @param _value Value
       */
-      matrix(const size_type _rows, const size_type _cols,
-             const element& _value);
+      matrix(const size_type _rows,
+             const size_type _cols,
+             const value_type& _value);
     };
 
     /// Empty constructor
@@ -90,7 +93,7 @@ namespace ttcl {
     matrix<T, Alloc>::
     matrix(const matrix<T, Alloc>::size_type _rows,
            const matrix<T, Alloc>::size_type _cols,
-           const matrix<T, Alloc>::element& _value) :
+           const matrix<T, Alloc>::value_type& _value) :
       base_type(_rows, _cols, _value, boost::c_storage_order()) {
     }
   }

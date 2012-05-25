@@ -63,7 +63,6 @@ namespace ttcl {
       /// Perform the hard clustering
       /** @param _hard_clustering Target hard clustering
           @param _data Data
-          @param _n_clusters Number of clusters
       */
       virtual void
       hard_cluster_on(hard_clustering_type& _hard_clustering,

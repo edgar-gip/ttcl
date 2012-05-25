@@ -50,8 +50,8 @@ namespace ttcl {
       typedef Container base_type;
 
     public:
-      /// Element type
-      TTCL_IMPORT_TYPE(base_type, element);
+      /// Value type
+      TTCL_IMPORT_TYPE(base_type, value_type);
 
       /// Size type
       TTCL_IMPORT_TYPE(base_type, size_type);
@@ -87,10 +87,10 @@ namespace ttcl {
         typedef typename hard_clustering<Cont>::value_type other_value_type;
 
         // Set each
-        for (size_type r = 0; r < this->size(); ++r)
+        for (size_type r = 0; r < samples(); ++r)
           for (size_type cl = 0; cl < clusters(); ++cl)
             (*this)[r][cl] =
-              (_other[r] == other_value_type(cl) ? element(1) : element(0));
+              (_other[r] == other_value_type(cl) ? 1 : 0);
       }
 
       /// Assignment operator
@@ -121,19 +121,24 @@ namespace ttcl {
         this->resize(_other.size(), _other.clusters());
 
         // Set each
-        for (size_type r = 0; r < this->size(); ++r)
+        for (size_type r = 0; r < samples(); ++r)
           for (size_type cl = 0; cl < clusters(); ++cl)
             (*this)[r][cl] =
-              (_other[r] == other_value_type(cl) ? element(1) : element(0));
+              (_other[r] == other_value_type(cl) ? 1 : 0);
 
         // Return this
         return *this;
       }
 
+      /// Number of samples
+      size_type
+      samples() const {
+        return this->rows();
+      }
+
       /// Number of clusters
       size_type
       clusters() const {
-        // Numer of columns
         return this->columns();
       }
 
@@ -141,8 +146,8 @@ namespace ttcl {
       ssize_t
       mpc(size_type _idx) const {
         // Probability
-        ssize_t high_cl = -1;
-        element high_pr = element();
+        ssize_t    high_cl = -1;
+        value_type high_pr =  0;
         for (size_type cl = 0; cl < clusters(); ++cl) {
           if ((*this)[_idx][cl] > high_pr) {
             high_cl = cl;
@@ -155,9 +160,10 @@ namespace ttcl {
       }
 
       /// Cluster sizes
-      std::vector<element> cluster_sizes() const {
+      std::vector<value_type>
+      cluster_sizes() const {
         // Result vector
-        std::vector<element> result(clusters(), 0u);
+        std::vector<value_type> result(clusters(), 0u);
 
         // For each one
         for (size_type r = 0; r < this->size(); ++r)

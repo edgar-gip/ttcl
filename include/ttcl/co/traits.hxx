@@ -19,11 +19,9 @@
 #ifndef TTCL_CO_TRAITS_HXX
 #define TTCL_CO_TRAITS_HXX
 
-// TTCL: The Template Clustering Library
-
 /** @file
     Containers - Traits
-    @author Edgar Gonzalez i Pellicer
+    @author Edgar Gonzàlez i Pellicer
 */
 
 #include <cstddef>

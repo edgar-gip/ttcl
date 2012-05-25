@@ -16,6 +16,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+#include <boost/format.hpp>
+
 #include <tap++/tap++.h>
 
 #include <ttcl/assert.hxx>
@@ -33,7 +35,7 @@ public:
   hard_cluster_on(hard_clustering_type& _hard_clustering,
                   const data_type& _data,
                   const ttcl::uint _n_clusters) const {
-    TTCL_ASSERT_EQ(_hard_clustering.size(), _data.size());
+    TTCL_ASSERT_EQ(_hard_clustering.samples(), _data.size());
 
     for (ttcl::uint i = 0; i < _data.size(); ++i)
       _hard_clustering[i] = i % _n_clusters;
@@ -67,71 +69,103 @@ main() {
 
   { // Hard cluster
     hard_clustering hc = clusterer.hard_cluster(data, n_clusters);
-    TAP::is(hc.clusters(), n_clusters);
-    if (TAP::is(hc.size(), n_samples)) {
+    TAP::is(hc.clusters(), n_clusters,
+            boost::str(boost::format("hard_cluster(...): clusters() == %d")
+                       % n_clusters));
+    if (TAP::is(hc.samples(), n_samples,
+                boost::str(boost::format("hard_cluster(...): size() == %d")
+                           % n_samples))) {
       for (int i = 0; i < n_samples; ++i) {
-        TAP::is(hc[i], i % n_clusters);
+        TAP::is(hc[i], i % n_clusters,
+                boost::str(boost::format("hard_cluster(...): out[%d] == %d")
+                           % i % (i % n_clusters)));
       }
     }
     else {
-      TAP::skip(n_samples);
+      TAP::skip(n_samples, "hard_cluster(...): size() does not match");
     }
   }
 
   { // Hard cluster on
     hard_clustering hc (data.size(), 0);
     clusterer.hard_cluster_on(hc, data, n_clusters);
-    TAP::is(hc.clusters(), n_clusters);
-    if (TAP::is(hc.size(), n_samples)) {
+    TAP::is(hc.clusters(), n_clusters,
+            boost::str(boost::format("hard_cluster_on(...): clusters() == %d")
+                       % n_clusters));
+    if (TAP::is(hc.samples(), n_samples,
+                boost::str(boost::format("hard_cluster(...): size() == %d")
+                           % n_samples))) {
       for (int i = 0; i < n_samples; ++i) {
-        TAP::is(hc[i], i % n_clusters);
+        TAP::is(hc[i], i % n_clusters,
+                boost::str(boost::format("hard_cluster_on(...): out[%d] == %d")
+                           % i % (i % n_clusters)));
       }
     }
     else {
-      TAP::skip(n_samples);
+      TAP::skip(n_samples, "hard_cluster_on(...): size() does not match");
     }
   }
 
   { // Soft cluster
     soft_clustering sc = clusterer.soft_cluster(data, n_clusters);
-    bool c1 = TAP::is(sc.clusters(), n_clusters);
-    bool c2 = TAP::is(sc.size(), n_samples);
+    bool c1 = TAP::is(sc.clusters(), n_clusters,
+                      boost::str(boost::format("soft_cluster(...):"
+                                               " clusters() == %d")
+                                 % n_clusters));
+    bool c2 = TAP::is(sc.samples(), n_samples,
+                      boost::str(boost::format("soft_cluster(...):"
+                                               " size() == %d") % n_samples));
     if (c1 && c2) {
       for (int i = 0; i < n_samples; ++i) {
         for (int c = 0; c < n_clusters; ++c) {
           if (c == i % n_clusters) {
-            TAP::is(sc[i][c], 1.0);
+            TAP::is(sc[i][c], 1.0,
+                    boost::str(boost::format("soft_cluster(...):"
+                                             " out[%d][%d] == 1") % i % c));
           }
           else {
-            TAP::is(sc[i][c], 0.0);
+            TAP::is(sc[i][c], 0.0,
+                    boost::str(boost::format("soft_cluster(...):"
+                                             " out[%d][%d] == 0") % i % c));
           }
         }
       }
     }
     else {
-      TAP::skip(n_samples * n_clusters);
+      TAP::skip(n_samples * n_clusters,
+                "soft_cluster(...): size() and/or clusters() do not match");
     }
   }
 
   { // Soft cluster on
     soft_clustering sc (data.size(), n_clusters);
     clusterer.soft_cluster_on(sc, data, n_clusters);
-    bool c1 = TAP::is(sc.clusters(), n_clusters);
-    bool c2 = TAP::is(sc.size(), n_samples);
+    bool c1 = TAP::is(sc.clusters(), n_clusters,
+                      boost::str(boost::format("soft_cluster_on(...):"
+                                               " clusters() == %d")
+                                 % n_clusters));
+    bool c2 = TAP::is(sc.samples(), n_samples,
+                      boost::str(boost::format("soft_cluster_on(...):"
+                                               " size() == %d") % n_samples));
     if (c1 && c2) {
       for (int i = 0; i < n_samples; ++i) {
         for (int c = 0; c < n_clusters; ++c) {
           if (c == i % n_clusters) {
-            TAP::is(sc[i][c], 1.0);
+            TAP::is(sc[i][c], 1.0,
+                    boost::str(boost::format("soft_cluster_on(...):"
+                                             " out[%d][%d] == 1") % i % c));
           }
           else {
-            TAP::is(sc[i][c], 0.0);
+            TAP::is(sc[i][c], 0.0,
+                    boost::str(boost::format("soft_cluster_on(...):"
+                                             " out[%d][%d] == 0") % i % c));
           }
         }
       }
     }
     else {
-      TAP::skip(n_samples * n_clusters);
+      TAP::skip(n_samples * n_clusters,
+                "soft_cluster_on(...): size() and/or clusters() do not match");
     }
   }
 
