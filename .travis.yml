@@ -1,0 +1,11 @@
+language: cpp
+compiler:
+  - gcc
+before_install:
+  - sudo apt-get update -qq
+install:
+  - sudo apt-get install -qq doxygen graphviz libboost-all-dev libreadline-dev libtool libltdl-dev libxmlrpc-c++4-dev
+before_script:
+  - libtoolize --copy --ltdl
+  - autoreconf
+script: ./configure && make && make check

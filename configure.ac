@@ -25,7 +25,7 @@ AC_CONFIG_HEADERS([src/ttcl/config.hxx])
 AC_CONFIG_MACRO_DIR([libltdl/m4])
 AC_CONFIG_SRCDIR([src/ttcl/exception.cxx])
 AC_CONFIG_SUBDIRS([libtdl])
-AM_INIT_AUTOMAKE([1.12 parallel-tests])
+AM_INIT_AUTOMAKE([parallel-tests])
 
 # Includes
 m4_include([m4/ax_cxx_compile_stdcxx_11.m4])
