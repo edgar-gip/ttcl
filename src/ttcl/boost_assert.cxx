@@ -31,6 +31,14 @@ namespace boost {
     throw ttcl::exception(_file, line, "%s: Assertion `%s' failed",
                           _function, _expr);
   }
+
+  /// Assertion failed with custom message.
+  void assertion_failed_msg(const char* _expr, const char* _message,
+                            const char* _function, const char* _file,
+                            long line) {
+    throw ttcl::exception(_file, line, "%s: Assertion `%s' failed: %s",
+                          _function, _expr, _message);
+  }
 }
 
 // Local Variables:
